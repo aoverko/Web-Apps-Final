@@ -24,4 +24,4 @@ Our website would require a landing page to display our company name and a quick
 3) Login Page
 4) Account Creation
 5) User Cart
-6) Check Out
+6) Admin Dashboard (Product Management)
