@@ -1,4 +1,4 @@
-# lunatech 
+![lunatech](Logos/lunatech.png)
 Group Members: Nick Benson, Jack Fiacco, Sam Chapin, Ariana Overko
 
 ## About lunatech
@@ -20,9 +20,12 @@ Our website would require a landing page to display our company name and a quick
 
 ## Website Design
 Page Designs:
-[Page Desings](pagedesigns.md)
+[click me!](pagedesigns.md)
 
-[Color Scheme](color_schemes.png)
+![Color Scheme](color_schemes.png)
+
+DB Table Architecture:
+[see tables]()
 
 ## Website Pages
 1) Landing Page: Identity, Bestsellers
