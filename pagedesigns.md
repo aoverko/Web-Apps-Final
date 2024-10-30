@@ -1,0 +1,6 @@
+!(<PageDesigns/Landing_Page>)
+!(<PageDesigns/Login>)
+!(<PageDesigns/Sign_Up>)
+!(<PageDesigns/Catalog>)
+!(<PageDesigns/User_Profile>)
+!(<PageDesigns/User_Cart>)
