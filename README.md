@@ -24,7 +24,7 @@ Our website would require a landing page to display our company name and a quick
 
 ## Website Design
 DB Table Architecture:
-[see tables]()
+[see tables](db_tables.md)
 
 Page Designs:
 [click me!](pagedesigns.md)
