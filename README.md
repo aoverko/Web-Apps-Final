@@ -1,11 +1,14 @@
 ![lunatech](Logos/githublogo.png)
 Group Members: Nick Benson, Jack Fiacco, Sam Chapin, Ariana Overko
 
+
 ## About lunatech
 Lunatech is a wireless headphone company that sells comfortable and high quality headphones. 
 
+
 ## Ideal Website 
 Our website would require a landing page to display our company name and a quick "about", with some best sellers and sales below. It would also need to have a separate catalog with browsable products. The site should reflect the company's identity as a futuristic and high quality manufacturer of headphones.
+
 
 ## Required Data
 1) Product ID
@@ -18,14 +21,17 @@ Our website would require a landing page to display our company name and a quick
 8) Items in Cart
 9) Amount to Charge
 
+
 ## Website Design
+DB Table Architecture:
+[see tables]()
+
 Page Designs:
 [click me!](pagedesigns.md)
 
+# Color Scheme
 ![Color Scheme](color_scheme.png)
 
-DB Table Architecture:
-[see tables]()
 
 ## Website Pages
 1) Landing Page: Identity, Bestsellers
