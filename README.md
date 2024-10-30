@@ -18,10 +18,16 @@ Our website would require a landing page to display our company name and a quick
 8) Items in Cart
 9) Amount to Charge
 
+## Website Design
+Page Designs:
+[Page Desings](pagedesigns.md)
+
+[Color Scheme](color_schemes.png)
+
 ## Website Pages
-1) Landing Page: Identity, Bestsellers, Sales
-2) Catalog: Wireless Headphones, Wireless Earbuds
+1) Landing Page: Identity, Bestsellers
+2) Catalog: Wireless Headphones
 3) Login Page
 4) Account Creation
 5) User Cart
-6) Admin Dashboard (Product Management)
+6) Profile
