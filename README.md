@@ -29,7 +29,7 @@ DB Table Architecture:
 Page Designs:
 [click me!](pagedesigns.md)
 
-# Color Scheme
+### Color Scheme
 ![Color Scheme](color_scheme.png)
 
 
