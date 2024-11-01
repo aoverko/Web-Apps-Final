@@ -27,7 +27,7 @@ DB Table Architecture:
 [see tables](db_tables.md)
 
 Page Designs:
-[click me!](pagedesigns.md)
+[see page designs](page_designs.md)
 
 ### Color Scheme
 ![Color Scheme](color_scheme.png)
