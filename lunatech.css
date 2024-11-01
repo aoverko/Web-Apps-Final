@@ -1,4 +1,23 @@
 /*Navbar Styles*/
 .navbar {
-background-color: #0D0B1C;
+    background-color: #0D0B1C;
+    display: flex;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:auto;
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-left: auto;
+}
+.nav-link {
+    color: white;
+}
+.nav-link:hover{
+    color: #EAE7DF;
 }
