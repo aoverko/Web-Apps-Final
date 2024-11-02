@@ -2,18 +2,20 @@
 //useful thing called Heredoc syntax
 echo <<< HTML
 <nav class="navbar">
-  <div class="nav-container">
+  <div class="nav-box">
         <div class="nav-left">
-            <a class="" href="landing_page.php">
-                <img src="Logos/lunatech_icon_white.png" width="6%" margin-left="5%">
+            <a href="landing_page.php">
+                <img src="Logos/lunatech_icon_white.png" class="nav-img">
             </a>
         </div>
 
         <div class="nav-right">
-            <a class="nav-link" href="catalog.php">Catalog</a>
-            <a class="nav-link" href="cart.php">Cart</a>
+            <a class="nav-links" href="catalog.php">Catalog</a>
+            <a href="cart.php">
+                <img src="cart.png">
+            </a>
             <a href="">
-                <img src="profile.png" width="6%">
+                <img src="profile.png">
             </a>
         </div>
   </div>

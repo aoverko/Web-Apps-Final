@@ -1,23 +1,33 @@
 /*Navbar Styles*/
 .navbar {
     background-color: #0D0B1C;
-    display: flex;
 }
-.nav-container {
+.nav-box, .nav-left, .nav-right, .nav-right a {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width:auto;
+}
+.nav-left img {
+    width: 6%;
+    margin-left: 6%;
 }
 .nav-right {
-    display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    margin-right: 3%;
+}
+.nav-right a {
     justify-content: right;
-    margin-left: auto;
+    max-width: 5%;
+    margin-left: .75%;
 }
-.nav-link {
+.nav-right img {
+    width: 55%;
+}
+.nav-links {
     color: white;
+    text-decoration: none;
+    margin-left: 5%;
 }
-.nav-link:hover{
+.nav-links:hover{
     color: #EAE7DF;
+    text-decoration: none;
 }
