@@ -30,7 +30,7 @@ Page Designs:
 [see page designs](page_designs.md)
 
 ### Color Scheme
-![Color Scheme](color_scheme.png)
+![Color Scheme](SiteAssets/color_scheme.png)
 
 
 ## Website Pages

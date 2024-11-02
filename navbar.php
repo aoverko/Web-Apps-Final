@@ -12,10 +12,10 @@ echo <<< HTML
         <div class="nav-right">
             <a class="nav-links" href="catalog.php">Catalog</a>
             <a href="cart.php">
-                <img src="cart.png">
+                <img src="SiteAssets/cart.png">
             </a>
             <a href="">
-                <img src="profile.png">
+                <img src="SiteAssets/profile.png">
             </a>
         </div>
   </div>
