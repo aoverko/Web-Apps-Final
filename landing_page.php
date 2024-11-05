@@ -20,6 +20,12 @@
     }
 </script>
 
+<style>
+    body {
+        background-color: #0D0B1C;
+    }
+</style>
+
 <body onload="loadNavbar()">
     <div id="navbar-area"></div>
     <div>
@@ -30,6 +36,30 @@
     </div>
     <div class="landing-logo">
         <img src="Logos/lunatech_white.png">
+    </div>
+    <div class="feature-text">
+        <h2>Explore our latest deals</h2>
+    </div>
+    <div class="featured">
+        <div class="card" style="width: 18rem;">
+            <img src="SiteAssets/Products/blue_led_headphones.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="SiteAssets/Products/purple_headphones.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="SiteAssets/Products/pink_headphones.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+
     </div>
 </body>
 
