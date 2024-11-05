@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +10,34 @@
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<script> 
-function loadNavbar() {
-            fetch('navbar.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar-area').innerHTML = data;
-                })
+<script>
+    function loadNavbar() {
+        fetch('navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-area').innerHTML = data;
+            })
 
-        }
+    }
 </script>
 
 <body onload="loadNavbar()">
-<div id="navbar-area"></div> 
+    <div id="navbar-area"></div>
 
+    <div class="product-box">
+        <div>
+            <img src="https://imgs.search.brave.com/2BmpCuwRgXbMtR4KvngKfbDyTOEVadYrtvRR-SCjhDc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80OC8wNi9p/bWFnZS1wcmV2aWV3/LWljb24tcGljdHVy/ZS1wbGFjZWhvbGRl/ci12ZWN0b3ItMzEy/ODQ4MDYuanBn">
+        </div>
+        <div>
+            <h2>Product</h2><br>
+            <h3>$___</h3><br>
+            <p>Description</p><br>
+            <p>Quantity</p><br>
+            <input type="number">
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+    </div>
 
 </body>
 

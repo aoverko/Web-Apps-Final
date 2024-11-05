@@ -42,22 +42,28 @@
     </div>
     <div class="featured">
         <div class="card" style="width: 18rem;">
-            <img src="SiteAssets/Products/blue_led_headphones.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+            <a href="product_details.php">
+                <img src="SiteAssets/Products/blue_led_headphones.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Featuring adaptive noise canceling, memory foam ear cushions, and up to thirty hours of battery life.</p>
+                </div>
+            </a>
         </div>
         <div class="card" style="width: 18rem;">
-            <img src="SiteAssets/Products/purple_headphones.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+            <a href="product_details.php">
+                <img src="SiteAssets/Products/blue_glow_headphones.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Featuring 7.1 surround sound, customizable RGB lights, noise-canceling mic and comfortable ear cups, this is the perfect headset for professional and hobbyist gamers.</p>
+                </div>
+            </a>
         </div>
         <div class="card" style="width: 18rem;">
-            <img src="SiteAssets/Products/pink_headphones.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+            <a href="product_details.php">
+                <img src="SiteAssets/Products/pink_headphones.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Premium over-ear headphones with studio-quality sound, ideal for professionals and audiophiles.</p>
+                </div>
+            </a>
         </div>
 
     </div>
