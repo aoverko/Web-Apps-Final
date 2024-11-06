@@ -1,9 +1,9 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
 $host = 'localhost';
-$dbname = 'lunatech';
-$user = 'root';
-$password = '';
+$dbname = 'group1';
+$username = 'group1';
+$password = 'tg5z4b31im';
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);

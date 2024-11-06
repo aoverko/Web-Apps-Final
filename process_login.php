@@ -1,8 +1,8 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
 $host = '54.165.204.136';
-$dbname = 'lunatech_db';
-$user = 'group1';
+$dbname = 'group1';
+$username = 'group1';
 $password = 'tg5z4b31im';
 
 try {
