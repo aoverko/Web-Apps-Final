@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['username'] = $username;
             echo "Login successful! Welcome, " . htmlspecialchars($username) . "!";
-            echo '<p><a href="process_login.php?action=logout">Logout</a></p>';
+            echo '<p><a href="process_login.php?action=logout" class="logout-link">Logout</a></p>';
         } else {
             echo "Invalid username or password.";
         }
@@ -66,25 +66,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Login or Create Account</title>
+    <link rel="stylesheet" href="process_login.css">
 </head>
 <body>
-    <?php if (!isset($_SESSION['username'])): ?>
-        <h2>Login</h2>
-        <form action="process_login.php" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="login">Login</button>
-        </form>
+    <div class="form-container">
+        <?php if (!isset($_SESSION['username'])): ?>
+            <h2>Login</h2>
+            <form action="process_login.php" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="login">Login</button>
+            </form>
 
-        <h2>Or Create an Account</h2>
-        <form action="process_login.php" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="create_account">Create Account</button>
-        </form>
-    <?php else: ?>
-        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-        <p><a href="process_login.php?action=logout">Logout</a></p>
-    <?php endif; ?>
+            <h2>Or Create an Account</h2>
+            <form action="process_login.php" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="create_account">Create Account</button>
+            </form>
+        <?php else: ?>
+            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+            <p><a href="process_login.php?action=logout" class="logout-link">Logout</a></p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
