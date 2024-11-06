@@ -75,9 +75,16 @@ body {
     color:aliceblue;
     margin-top: 5%;
 }
+.featured a {
+    text-decoration: none;
+    color:#0D0B1C;
+}
 .card {
     border: none;
 }
-.featured :hover {
+.card:hover {
     opacity: 70%;
 }
+
+
+/*Product Details Styles*/

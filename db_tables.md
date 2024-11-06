@@ -14,7 +14,7 @@ The `Users` table stores information about each user who registers in the applic
 | `password`   | VARCHAR(255)   | Hashed password for user authentication. |
 | `created_at` | TIMESTAMP      | Timestamp of when the user account was created. |
 | `updated_at` | TIMESTAMP      | Timestamp of the last update to the user's record. |
-
+ 
 ### Notes:
 - **Primary Key**: The `id` field serves as the primary key for the `Users` table.
 - **Unique Constraints**: Both `username` and `email` are unique to prevent duplicate user records.
@@ -35,7 +35,7 @@ The `Products` table stores details about the products available in the applicat
 | `stock`        | INT              | Quantity of the product in stock.      |
 | `created_at`   | TIMESTAMP        | Timestamp of when the product was added. |
 | `updated_at`   | TIMESTAMP        | Timestamp of the last update to the product record. |
-
+| `image_url`    | Image Url        | Image of Product
 ### Notes:
 - **Primary Key**: The `id` field is the primary key for the `Products` table.
 - **Price Format**: Prices are stored with two decimal places (e.g., 19.99).
