@@ -1,4 +1,3 @@
-```markdown
 # Lunatech Product Line
 
 ## Lunatech SonicWave Pro
