@@ -2,7 +2,7 @@
 // ---- DATABASE CONFIGURATION ----
 $servername = "localhost";
 $user = "group1";
-$pass = "tg5z4b31iM]";
+$pass = "tg5z4b31im";
 $dbname = "group1";
 
 try {
