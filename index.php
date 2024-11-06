@@ -1,9 +1,10 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
 $servername = "localhost";
-$user = "group1";
-$pass = "tg5z4b31iM]";
-$dbname = "group1";
+$dbname = 'group1';
+$username = 'group1';
+$password = 'tg5z4b31im';
+
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
