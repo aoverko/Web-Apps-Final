@@ -21,21 +21,28 @@
     }
 </script>
 
+<?php
+//require "DBdontpublish.php";
+
+?>
+
 <body onload="loadNavbar()">
     <div id="navbar-area"></div>
 
     <div class="product-box">
-        <div>
-            <img src="https://imgs.search.brave.com/2BmpCuwRgXbMtR4KvngKfbDyTOEVadYrtvRR-SCjhDc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80OC8wNi9p/bWFnZS1wcmV2aWV3/LWljb24tcGljdHVy/ZS1wbGFjZWhvbGRl/ci12ZWN0b3ItMzEy/ODQ4MDYuanBn">
+        <div class="product-img-box">
+            <img id="product-img"
+                src="https://imgs.search.brave.com/2BmpCuwRgXbMtR4KvngKfbDyTOEVadYrtvRR-SCjhDc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80OC8wNi9p/bWFnZS1wcmV2aWV3/LWljb24tcGljdHVy/ZS1wbGFjZWhvbGRl/ci12ZWN0b3ItMzEy/ODQ4MDYuanBn">
         </div>
-        <div>
-            <h2>Product</h2><br>
+        <div class="product-details">
+            <h2>Product</h2>
             <h3>$___</h3><br>
-            <p>Description</p><br>
-            <p>Quantity</p><br>
-            <input type="number">
-            <button>Add to Cart</button>
-            <button>Buy Now</button>
+            <p>Description</p>
+            <p>Quantity</p>
+            <input type="number" min="0"><br></br>
+            <button id="cart-pr-dets">Add to Cart</button>
+            <button id="buy-pr-dets">Buy Now</button>
+
         </div>
     </div>
 

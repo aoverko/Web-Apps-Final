@@ -11,6 +11,7 @@ body {
 .nav-box, .nav-left, .nav-right, .nav-right a {
     display: flex;
     align-items: center;
+    
 }
 .nav-left img {
     width: 6%;
@@ -60,6 +61,7 @@ body {
     width: 70%;
 }
 
+
 /*Landing Page Bestsellers*/
 .featured {
     display: flex;
@@ -88,3 +90,32 @@ body {
 
 
 /*Product Details Styles*/
+.product-box{
+    display: flex;
+    justify-content: left;
+    padding: 8%;
+    margin-left: 5%
+}
+.product-img-box {
+    display: flex;
+    align-items: flex-start;
+    width: 30%;
+}
+.product-details {
+    display:flex;
+    flex-direction: column;
+    margin-left: 10%; 
+    width: 50%;
+}
+.product-details input {
+    width: 12%;
+}
+#cart-pr-dets {
+    background-color: #0D0B1C;
+    color: aliceblue;
+}
+#cart-pr-dets, #buy-pr-dets {
+    margin: 1%;
+    padding: 1%;
+    border-color: #0D0B1C;
+}
