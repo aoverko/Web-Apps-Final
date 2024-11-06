@@ -14,7 +14,7 @@ echo <<< HTML
             <a href="cart.php">
                 <img src="SiteAssets/cart.png">
             </a>
-            <a href="">
+            <a href="process_login.php">
                 <img src="SiteAssets/profile.png">
             </a>
         </div>
