@@ -26,6 +26,11 @@
     }
 </style>
 
+<?php
+require "DBdontpublish.php";
+
+?>
+
 <body onload="loadNavbar()">
     <div id="navbar-area"></div>
     <div>
