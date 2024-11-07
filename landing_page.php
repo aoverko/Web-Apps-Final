@@ -16,8 +16,23 @@
             .then(data => {
                 document.getElementById('navbar-area').innerHTML = data;
             })
-
     }
+
+    //set product cookie based on click for each link
+    function setProductCookie(identifier) {
+        document.cookie = "view-product=" + identifier + "; path=/; max-age=" + 60 * 60 * 24; 
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const productLinks = document.querySelectorAll('.product-card');
+
+        productLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                const productId = this.getAttribute('data-product-id');
+                setProductCookie(productId);
+            });
+        });
+    });
 </script>
 
 <style>
@@ -27,7 +42,29 @@
 </style>
 
 <?php
+//get content from database
 require "DBdontpublish.php";
+
+//TRIED to make a function I could repeat
+function query($conn, $column, $name)
+{
+    $query = "SELECT $column from Products WHERE name = '$name'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            return $row[$column];
+        }
+    }
+}
+$imgURL1 = query($conn, 'image_url', 'Lunatech SonicWave Pro');
+$name1 = query($conn, 'name', 'Lunatech SonicWave Pro');
+
+$imgURL2 = query($conn, 'image_url', 'Lunatech GamePro 360');
+$name2 = query($conn, 'name', 'Lunatech GamePro 360');
+
+$imgURL3 = query($conn, 'image_url', 'Lunatech CrystalX Studio');
+$name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
 
 ?>
 
@@ -46,27 +83,27 @@ require "DBdontpublish.php";
         <h2>Explore our latest deals</h2>
     </div>
     <div class="featured">
-        <div class="card" style="width: 18rem;">
+        <div class="product-card" style="width: 18rem;" data-product-id="<?php echo $name1 ?>">
             <a href="product_details.php">
-                <img src="SiteAssets/Products/blue_led_headphones.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Featuring adaptive noise canceling, memory foam ear cushions, and up to thirty hours of battery life.</p>
+                <img src="<?php echo $imgURL1 ?>" class="card-img" alt="...">
+                <div>
+                    <p class="card-text"><?php echo $name1 ?></p>
                 </div>
             </a>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="product-card" style="width: 18rem;" data-product-id="<?php echo $name2 ?>">
             <a href="product_details.php">
-                <img src="SiteAssets/Products/blue_glow_headphones.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Featuring 7.1 surround sound, customizable RGB lights, noise-canceling mic and comfortable ear cups, this is the perfect headset for professional and hobbyist gamers.</p>
+                <img src="SiteAssets/Products/blue_glow_headphones.png" class="card-img" alt="...">
+                <div>
+                    <p class="card-text"><?php echo $name2 ?></p>
                 </div>
             </a>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="product-card" style="width: 18rem;" data-product-id="<?php echo $name3 ?>">
             <a href="product_details.php">
-                <img src="SiteAssets/Products/pink_headphones.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Premium over-ear headphones with studio-quality sound, ideal for professionals and audiophiles.</p>
+                <img src="SiteAssets/Products/pink_headphones.png" class="card-img" alt="...">
+                <div>
+                    <p class="card-text"><?php echo $name3 ?></p>
                 </div>
             </a>
         </div>

@@ -17,12 +17,37 @@
             .then(data => {
                 document.getElementById('navbar-area').innerHTML = data;
             })
-
     }
 </script>
 
 <?php
-//require "DBdontpublish.php";
+require "DBdontpublish.php";
+$img;
+$name;
+$price;
+$description;
+$stock;
+
+function query($conn, $column, $cookie_data) {
+    $query = "SELECT $column from Products WHERE name = '$cookie_data'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            return $row[$column];
+        }
+    }
+}
+
+if (isset($_COOKIE['view-product'])) {
+    $cookie = $_COOKIE['view-product'];
+
+    $img = query($conn, 'image_url', $cookie);
+    $name = query($conn, 'name', $cookie);
+    $price = query($conn, 'price', $cookie);
+    $description = query($conn, 'description', $cookie);
+    $stock = query($conn, 'stock', $cookie);
+}
 
 ?>
 
@@ -31,14 +56,13 @@
 
     <div class="product-box">
         <div class="product-img-box">
-            <img id="product-img"
-                src="https://imgs.search.brave.com/2BmpCuwRgXbMtR4KvngKfbDyTOEVadYrtvRR-SCjhDc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80OC8wNi9p/bWFnZS1wcmV2aWV3/LWljb24tcGljdHVy/ZS1wbGFjZWhvbGRl/ci12ZWN0b3ItMzEy/ODQ4MDYuanBn">
+            <img id="product-img" src="<?php echo $img?>">
         </div>
         <div class="product-details">
-            <h2>Product</h2>
-            <h3>$___</h3><br>
-            <p>Description</p>
-            <p>Quantity</p>
+            <h2><?php echo $name?></h2>
+            <h3><?php echo "$" . $price?></h3><br>
+            <p><?php echo $stock . " left in stock"?></p>
+            <p><?php echo $description?></p>
             <input type="number" min="0"><br></br>
             <button id="cart-pr-dets">Add to Cart</button>
             <button id="buy-pr-dets">Buy Now</button>
