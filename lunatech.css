@@ -1,17 +1,18 @@
 body {
-    margin: 0;
+overflow-x: hidden;
 }
 
 /*Navbar Styles*/
 .navbar {
-    background-color: #0D0B1C;
     position: fixed;
+    background-color: #0D0B1C;
+    min-width: 100vw;
+    top: 0;
     z-index: 1;
 }
 .nav-box, .nav-left, .nav-right, .nav-right a {
     display: flex;
     align-items: center;
-    
 }
 .nav-left img {
     width: 6%;
@@ -142,3 +143,5 @@ body {
     padding: 1%;
     border-color: #0D0B1C;
 }
+
+

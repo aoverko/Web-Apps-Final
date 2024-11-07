@@ -68,7 +68,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login or Create Account</title>
     <link rel="stylesheet" href="process_login.css">
 </head>
-<body>
+<script>
+    function loadNavbar() {
+        fetch('navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-area').innerHTML = data;
+            })
+    }
+</script>
+
+<body onload="">
+<div id="navbar-area"></div>
     <div class="form-container">
         <?php if (!isset($_SESSION['username'])): ?>
             <h2>Login</h2>

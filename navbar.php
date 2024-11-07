@@ -1,7 +1,7 @@
 <?php
 //useful thing called Heredoc syntax
 echo <<< HTML
-<nav class="navbar">
+<nav class="navbar navbar-expand-xxl">
   <div class="nav-box">
         <div class="nav-left">
             <a href="landing_page.php">
@@ -14,7 +14,7 @@ echo <<< HTML
             <a href="cart.php">
                 <img src="SiteAssets/cart.png">
             </a>
-            <a href="process_login.php">
+            <a href="login.php">
                 <img src="SiteAssets/profile.png">
             </a>
         </div>
