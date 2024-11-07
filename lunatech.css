@@ -112,17 +112,22 @@ body {
     display: flex;
     justify-content: left;
     padding: 8%;
-    margin-left: 5%
+    margin-left: 1.5%
 }
 .product-img-box {
     display: flex;
     align-items: flex-start;
     width: 30%;
+    margin-right: 3%;
+}
+#product-img {
+    width: 120%;
 }
 .product-details {
     display:flex;
     flex-direction: column;
     margin-left: 10%; 
+    margin-top: -1%;
     width: 50%;
 }
 .product-details input {

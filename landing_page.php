@@ -66,9 +66,6 @@ $name2 = query($conn, 'name', 'Lunatech GamePro 360');
 $imgURL3 = query($conn, 'image_url', 'Lunatech CrystalX Studio');
 $name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
 
-$imgQ3 = "SELECT image_url from Products WHERE name = 'Lunatech CrystalX Studio'";
-$img3 = mysqli_query($conn, $imgQ3);
-
 ?>
 
 <body onload="loadNavbar()">
