@@ -1,6 +1,6 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
-$servername = "54.165.204.136";
+$servername = "localhost";
 $dbname = 'group1';
 $username = 'group1';
 $password = 'tg5z4b31im';
