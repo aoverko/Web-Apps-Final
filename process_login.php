@@ -1,16 +1,15 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
-$servername = "localhost";
-$dbname = 'group1';
-$username = 'group1';
-$password = 'tg5z4b31im';
+$servername = "54.165.204.136";
+$user = "group1";
+$pass = "tg5z4b31iM]";
+$dbname = "group1";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
+$conn = mysqli_connect($servername, $user, $pass, $dbname);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  } 
 
 
 // ---- SESSION START ----
