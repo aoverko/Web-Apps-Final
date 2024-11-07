@@ -1,6 +1,6 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
-$servername = "localhost";
+$servername = "54.165.204.136";
 $dbname = 'group1';
 $username = 'group1';
 $password = 'tg5z4b31im';
@@ -11,6 +11,7 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
+
 
 // ---- SESSION START ----
 session_start();
