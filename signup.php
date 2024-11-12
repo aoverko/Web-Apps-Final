@@ -55,6 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 </script>
 
+<style>
+    body {
+        background-color: #0D0B1C;
+    }
+</style>
+
 <body onload="loadNavbar()" class="login">
     <div id="navbar-area"></div>
     <div class="form-body">

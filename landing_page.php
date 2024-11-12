@@ -36,7 +36,9 @@
 </script>
 
 <style>
-   
+   body {
+    background-color: #0D0B1C;
+   }
 </style>
 
 <?php
