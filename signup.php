@@ -55,20 +55,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 </script>
 
-<body onload="loadNavbar()">
+<body onload="loadNavbar()" class="login">
     <div id="navbar-area"></div>
-    <div class="form-container">
-        <?php if (!isset($_SESSION['username'])): ?>
-            <h2>Create an Account</h2>
-            <form action="signup.php" method="POST">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="create_account">Create Account</button>
-            </form>
-        <?php else: ?>
-            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-            <p><a href="signup.php?action=logout" class="logout-link">Logout</a></p>
-        <?php endif; ?>
+    <div class="form-body">
+        <div class="form-container">
+            <?php if (!isset($_SESSION['username'])): ?>
+                <h2>Create an Account</h2>
+                <form action="signup.php" method="POST">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" name="create_account" class="acct-button">Create Account</button>
+                    <a href="login.php" class="login-link">Already have an account? Log in!</a>
+                </form>
+            <?php else: ?>
+                <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+                <p><a href="signup.php?action=logout" class="logout-link">Logout</a></p>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 

@@ -1,7 +1,7 @@
 <?php
 //useful thing called Heredoc syntax
 echo <<< HTML
-<nav class="navbar navbar-expand-xxl">
+<nav class="navbar">
   <div class="nav-box">
         <div class="nav-left">
             <a href="landing_page.php">
