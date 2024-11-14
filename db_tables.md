@@ -35,7 +35,7 @@ The `Products` table stores details about the products available in the applicat
 | `stock`        | INT              | Quantity of the product in stock.      |
 | `created_at`   | TIMESTAMP        | Timestamp of when the product was added. |
 | `updated_at`   | TIMESTAMP        | Timestamp of the last update to the product record. |
-| `image_url`    | Image Url        | Image of Product
+| `image_url`    | Image Url        | Image of Product. |
 ### Notes:
 - **Primary Key**: The `id` field is the primary key for the `Products` table.
 - **Price Format**: Prices are stored with two decimal places (e.g., 19.99).
