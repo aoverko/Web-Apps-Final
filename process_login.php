@@ -1,16 +1,15 @@
 <?php
 // ---- DATABASE CONFIGURATION ----
 $servername = "54.165.204.136";
-$user = "group1";
-$pass = "tg5z4b31iM]";
+$username = "group1";
+$password = "tg5z4b31iM]";
 $dbname = "group1";
 
-$conn = mysqli_connect($servername, $user, $pass, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
-  } 
-
+} 
 
 // ---- SESSION START ----
 session_start();
@@ -30,10 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['password'];
 
         // Query the database for the user
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username); // "s" means the parameter is a string
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
 
         // Verify password
         if ($user && password_verify($password, $user['password'])) {
@@ -45,12 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['create_account'])) {  // Account creation form submitted
         $username = $_POST['username'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         // Insert user into the database
-        $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
+        $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+        $stmt->bind_param("ss", $username, $hashed_password); // "ss" means both parameters are strings
 
         if ($stmt->execute()) {
             echo "Account created successfully! You can now log in.";

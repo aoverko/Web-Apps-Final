@@ -1,3 +1,23 @@
+<?php
+// Database connection
+$servername = "54.165.204.136";
+$username = "group1";
+$password = "tg5z4b31iM]";
+$dbname = "group1";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch products from the database
+$sql = "SELECT name, description, image_url, price FROM products";
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +31,44 @@
 
 <script> 
 function loadNavbar() {
-            fetch('navbar.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar-area').innerHTML = data;
-                })
-
-        }
+    fetch('navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-area').innerHTML = data;
+        });
+}
 </script>
 
 <body onload="loadNavbar()">
-<div id="navbar-area"></div> 
+    <div id="navbar-area"></div> 
 
-
+    <div class="container mt-5">
+        <h1 class="text-center">Product Catalog</h1>
+        <div class="row">
+            <?php
+            if ($result->num_rows > 0) {
+                // Loop through each product
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-md-4 mb-4'>";
+                    echo "<div class='card h-100'>";
+                    echo "<img src='" . htmlspecialchars($row['image_url']) . "' class='card-img-top' alt='" . htmlspecialchars($row['name']) . "'>";
+                    echo "<div class='card-body'>";
+                    echo "<h5 class='card-title'>" . htmlspecialchars($row['name']) . "</h5>";
+                    echo "<p class='card-text'>" . htmlspecialchars($row['description']) . "</p>";
+                    echo "<p class='card-text'><strong>$" . htmlspecialchars($row['price']) . "</strong></p>";
+                    echo "<a href='#' class='btn btn-primary'>Reserve/Purchase</a>";
+                    echo "</div></div></div>";
+                }
+            } else {
+                echo "<p class='text-center'>No products available.</p>";
+            }
+            ?>
+        </div>
+    </div>
 </body>
-
 </html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>
