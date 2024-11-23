@@ -76,10 +76,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" name="password" placeholder="Password" required>
                     <button type="submit" name="login" class="login-button">Login</button>
                     <a href="signup.php" class="signup-link">Don't have an account? Sign up!</a>
-                </form>
+                </form> 
 
             <?php else: ?>
                 <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+                <p><a href="product_dashboard.php" class="logout-link">View Dashboard</a></p>
                 <p><a href="login.php?action=logout" class="logout-link">Logout</a></p>
             <?php endif; ?>
         </div>
