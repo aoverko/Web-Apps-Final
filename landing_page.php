@@ -17,23 +17,8 @@
                 document.getElementById('navbar-area').innerHTML = data;
             })
     }
-
-    //set product cookie based on click for each link
-    function setProductCookie(identifier) {
-        document.cookie = "view-product=" + identifier + "; path=/; max-age=" + 60 * 60 * 24; 
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const productLinks = document.querySelectorAll('.product-card');
-
-        productLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                const productId = this.getAttribute('data-product-id');
-                setProductCookie(productId);
-            });
-        });
-    });
 </script>
+
 
 <style>
    body {
@@ -42,21 +27,11 @@
 </style>
 
 <?php
-//get content from database
+//get content from database 
 require "DBdontpublish.php";
+//set cookie to track last product clicked
+require "product_cookie.php";
 
-//TRIED to make a function I could repeat
-function query($conn, $column, $name)
-{
-    $query = "SELECT $column from Products WHERE name = '$name'";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            return $row[$column];
-        }
-    }
-}
 $imgURL1 = query($conn, 'image_url', 'Lunatech SonicWave Pro');
 $name1 = query($conn, 'name', 'Lunatech SonicWave Pro');
 
@@ -83,7 +58,7 @@ $name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
         <h2>Explore our latest deals</h2>
     </div>
     <div class="featured">
-        <div class="product-card" style="width: 18rem;" data-product-id="<?php echo $name1 ?>">
+        <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name1 ?>">
             <a href="product_details.php">
                 <img src="<?php echo $imgURL1 ?>" class="card-img" alt="...">
                 <div>
@@ -91,7 +66,7 @@ $name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
                 </div>
             </a>
         </div>
-        <div class="product-card" style="width: 18rem;" data-product-id="<?php echo $name2 ?>">
+        <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name2 ?>">
             <a href="product_details.php">
                 <img src="SiteAssets/Products/blue_glow_headphones.png" class="card-img" alt="...">
                 <div>
@@ -99,7 +74,7 @@ $name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
                 </div>
             </a>
         </div>
-        <div class="product-card" style="width: 18rem;" data-product-id="<?php echo $name3 ?>">
+        <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name3 ?>">
             <a href="product_details.php">
                 <img src="SiteAssets/Products/pink_headphones.png" class="card-img" alt="...">
                 <div>

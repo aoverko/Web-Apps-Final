@@ -22,22 +22,13 @@
 
 <?php
 require "DBdontpublish.php";
+require "product_cookie.php";
 $img;
 $name;
 $price;
 $description;
 $stock;
 
-function query($conn, $column, $cookie_data) {
-    $query = "SELECT $column from Products WHERE name = '$cookie_data'";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            return $row[$column];
-        }
-    }
-}
 
 if (isset($_COOKIE['view-product'])) {
     $cookie = $_COOKIE['view-product'];

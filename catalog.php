@@ -1,16 +1,7 @@
 <?php
-// Database connection
-$servername = "54.165.204.136";
-$username = "group1";
-$password = "tg5z4b31iM]";
-$dbname = "group1";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+//Database connection
+require "DBdontpublish.php";
+require "product_cookie.php";
 
 // Fetch products from the database
 $sql = "SELECT name, description, image_url, price FROM products";
@@ -56,7 +47,7 @@ function loadNavbar() {
                     echo "<h5 class='card-title'>" . htmlspecialchars($row['name']) . "</h5>";
                     echo "<p class='card-text'>" . htmlspecialchars($row['description']) . "</p>";
                     echo "<p class='card-text'><strong>$" . htmlspecialchars($row['price']) . "</strong></p>";
-                    echo "<a href='#' class='btn btn-primary'>Reserve/Purchase</a>";
+                    echo "<a href='#' class='btn btn-primary'>Add to Cart</a>";
                     echo "</div></div></div>";
                 }
             } else {

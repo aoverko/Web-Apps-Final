@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-body">
         <div class="form-container">
             <?php if (!isset($_SESSION['username'])): ?>
-                <h2>Create an Account</h2>
+                <h2  class="login-heading">Create an Account</h2>
                 <form action="signup.php" method="POST">
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>

@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-body">
         <div class="form-container">
             <?php if (!isset($_SESSION['username'])): ?>
-                <h2>Log In</h2>
+                <h2 class="login-heading">Log In</h2>
                 <form action="login.php" method="POST">
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>
@@ -80,8 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php else: ?>
                 <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-                <p><a href="product_dashboard.php" class="logout-link">View Dashboard</a></p>
-                <p><a href="login.php?action=logout" class="logout-link">Logout</a></p>
+                <p><a href="product_dashboard.php" class="log-link">View Dashboard</a></p>
+                <p><a href="login.php?action=logout" class="log-link">Logout</a></p>
             <?php endif; ?>
         </div>
     </div>
