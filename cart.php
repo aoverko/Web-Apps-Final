@@ -29,10 +29,13 @@ require "cart_cookie.php";
 $cartItems = [];
 if (isset($_COOKIE['cart-items'])) {
     $cartItems = json_decode($_COOKIE['cart-items'], true);
+} else {
+    $cartEmpty = true;
 }
 
 function getCookieDetails($cartItems)
 {
+    $details = [];
     foreach ($cartItems as $item) {
         $details[] = [
             'name' => $item['name'],
@@ -61,7 +64,9 @@ if (!empty($productNames)) {
     <div id="navbar-area"></div>
     <div class="cart">
         <div class="in-cart">
-            <?php if ($result->num_rows > 0): ?>
+            <?php if (isset($cartEmpty) && $cartEmpty): ?>
+                <p>Your cart is empty.</p>
+            <?php elseif ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()) : ?>
                     <!--get quantities of each product and prep for subtotal-->
                     <?php
@@ -86,16 +91,18 @@ if (!empty($productNames)) {
                     <p><?php echo htmlspecialchars($row['price']) ?></p>
                     <p><?php echo "Quantity: " . htmlspecialchars($quantity) ?></p>
 
-            <?php endwhile;
-            endif;
-            $total = $subTotal + $totalTax; //get total
-            ?>
+                <?php endwhile;
+                $total = $subTotal + $totalTax; //get total
+                ?>
+            <?php endif; ?>
         </div>
 
         <div class="total">
-            <h3>Subtotal: <?php echo number_format($subTotal, 2); ?></h3>
-            <h3>Tax: <?php echo number_format($totalTax, 2); ?></h3>
-            <h2>Total: <?php echo number_format($total, 2); ?></h2>
+            <?php if (!isset($cartEmpty) && !$cartEmpty): ?>
+                <h3>Subtotal: <?php echo number_format($subTotal, 2); ?></h3>
+                <h3>Tax: <?php echo number_format($totalTax, 2); ?></h3>
+                <h2>Total: <?php echo number_format($total, 2); ?></h2>
+            <?php endif; ?>
         </div>
     </div>
 
