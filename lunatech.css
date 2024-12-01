@@ -213,3 +213,22 @@ input[type="password"] {
 .logout-link:hover, .signup-link:hover, .login-link:hover {
     color: #C2BEB3;
 }
+
+/*Product Dashboard Styles*/
+.add-product {
+    margin-top: 5%;
+}
+
+/*Cart Styles*/
+.cart {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column; 
+}
+.in-cart {
+    justify-content: left;
+}
+.total {
+    justify-content: end;
+}
