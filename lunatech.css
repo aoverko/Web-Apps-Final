@@ -158,19 +158,37 @@ overflow-x: hidden;
     background-color: #0D0B1C;
     color: #EAE7DF;
 }
-.form-body {
+.login-body, .create-acct-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8%;
 }
-.form-container {
-    padding: 2rem;
+.login-body {
+    margin-top: 4rem;
+}
+.create-acct-body {
+    margin-top: 1rem;
+}
+.create-acct-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     width: 40%; 
 }
-h2 {
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 40%; 
+} .login-heading {
     color: #EAE7DF;
     font-size: 2.5rem;
     font-weight: normal;
@@ -200,13 +218,32 @@ input[type="password"] {
 .login-button:hover, .acct-button:hover {
     background-color: #C2BEB3;
 }
-.logout-link, .signup-link, .login-link {
+.log-link, .signup-link, .login-link {
     color: #EAE7DF;
     text-decoration: none;
     text-align: center;
     display: block;
-    margin-top: 1rem;
+    padding: 0.5rem;
 }
 .logout-link:hover, .signup-link:hover, .login-link:hover {
     color: #C2BEB3;
+}
+
+/*Product Dashboard Styles*/
+.add-product {
+    margin-top: 5%;
+}
+
+/*Cart Styles*/
+.cart {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column; 
+}
+.in-cart {
+    justify-content: left;
+}
+.total {
+    justify-content: end;
 }

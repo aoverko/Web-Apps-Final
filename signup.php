@@ -17,12 +17,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 // ---- ACCOUNT CREATION PROCESSING ----
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['create_account'])) {  // Account creation form submitted
+        $is_admin = 0;
         $username = $_POST['username'];
+        $email = $_POST['email'];
+        $lname = $_POST['lname'];
+        $fname = $_POST['fname'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         // Insert user into the database
-        $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $username, $password);
+        $stmt = $conn->prepare("INSERT INTO users (is_admin, username, email, password, lastname, firstname) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $is_admin, $username, $email, $password, $lname, $fname);
 
         if ($stmt->execute()) {
             echo "Account created successfully! You can now log in.";
@@ -63,11 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body onload="loadNavbar()" class="login">
     <div id="navbar-area"></div>
-    <div class="form-body">
-        <div class="form-container">
+    <div class="form-body create-acct-body">
+        <div class="form-container create-acct-container">
             <?php if (!isset($_SESSION['username'])): ?>
-                <h2>Create an Account</h2>
+                <h2 class="login-heading">Create an Account</h2>
                 <form action="signup.php" method="POST">
+                    <input type="text" name="fname" placeholder="First Name" required>
+                    <input type="text" name="lname" placeholder="Last Name" required>
+                    <input type="text" name="email" placeholder="email@lunatech.com" required>
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>
                     <button type="submit" name="create_account" class="acct-button">Create Account</button>

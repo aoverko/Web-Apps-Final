@@ -22,22 +22,14 @@
 
 <?php
 require "DBdontpublish.php";
+require "product_cookie.php";
+require "cart_cookie.php";
 $img;
 $name;
 $price;
 $description;
 $stock;
 
-function query($conn, $column, $cookie_data) {
-    $query = "SELECT $column from Products WHERE name = '$cookie_data'";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            return $row[$column];
-        }
-    }
-}
 
 if (isset($_COOKIE['view-product'])) {
     $cookie = $_COOKIE['view-product'];
@@ -56,15 +48,17 @@ if (isset($_COOKIE['view-product'])) {
 
     <div class="product-box">
         <div class="product-img-box">
-            <img id="product-img" src="<?php echo $img?>">
+            <img id="product-img" src="<?php echo htmlspecialchars($img)?>">
         </div>
         <div class="product-details">
-            <h2><?php echo $name?></h2>
-            <h3><?php echo "$" . $price?></h3><br>
-            <p><?php echo $stock . " left in stock"?></p>
-            <p><?php echo $description?></p>
-            <input type="number" min="0"><br></br>
-            <button id="cart-pr-dets">Add to Cart</button>
+            <h2><?php echo htmlspecialchars($name)?></h2>
+            <h3><?php echo "$" . htmlspecialchars($price)?></h3><br>
+            <p><?php echo htmlspecialchars($stock) . " left in stock"?></p>
+            <p><?php echo htmlspecialchars($description)?></p>
+            <input type="number" id="quantity-input" min="0"><br></br>
+            <a href="#" id="cart-pr-dets" class="cart-data" 
+            data-product-name="<?php echo htmlspecialchars($name) ?>"
+            >Add to Cart</a>
             <button id="buy-pr-dets">Buy Now</button>
 
         </div>
