@@ -2,18 +2,21 @@
 require "DBdontpublish.php";
 session_start();
 
+// Verifies a user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
 
+// Checks if the user is an admin
 $stmt = $conn->prepare("SELECT is_admin FROM users WHERE username = ?");
 $stmt->bind_param("s", $_SESSION['username']); 
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-if (!$user['is_admin']) {
+// Redirects regular employees away from the "Manage Employees" page
+if (!$user['is_admin'] && $_SERVER['REQUEST_URI'] === '/manage_employee.php') {
     header("Location: login.php");
     exit();
 }
@@ -61,7 +64,9 @@ if (!$result) {
                     <div class="card-body">
                         <h5 class="card-title">Quick Actions</h5>
                         <a href="product_dashboard.php" class="btn btn-primary me-2">Manage Products</a>
-                        <a href="manage_employee.php" class="btn btn-primary">Manage Employees</a>
+                        <?php if ($user['is_admin']) { ?>
+                            <a href="manage_employee.php" class="btn btn-primary">Manage Employees</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
