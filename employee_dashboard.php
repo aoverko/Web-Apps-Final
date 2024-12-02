@@ -63,7 +63,7 @@ if (!$result) {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Quick Actions</h5>
-                        <a href="product_dashboard.php" class="btn btn-primary me-2">Manage Products</a>
+                        <a href="product_dashboard.php" class="btn btn-primary me-2">View Products</a>
                         <?php if ($user['is_admin']) { ?>
                             <a href="manage_employee.php" class="btn btn-primary">Manage Employees</a>
                         <?php } ?>
@@ -71,42 +71,6 @@ if (!$result) {
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Employee Directory</h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php while ($row = $result->fetch_assoc()) : ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($row['username']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['lastname']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['email']); ?></td>
-                                            <td>
-                                                <a href="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" 
-                                                   class="btn btn-sm btn-outline-primary">View Profile</a>
-                                            </td>
-                                        </tr>
-                                    <?php endwhile; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
 

@@ -25,5 +25,4 @@ function loadNavbar() {
 
 
 </body>
-
 </html>

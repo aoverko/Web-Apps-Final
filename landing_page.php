@@ -85,5 +85,8 @@ $name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
 
     </div>
 </body>
-
 </html>
+
+<?php
+$conn->close();
+?>

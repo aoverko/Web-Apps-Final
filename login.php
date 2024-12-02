@@ -80,11 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php else: ?>
                 <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-                <p><a href="product_dashboard.php" class="log-link">View Dashboard</a></p>
+                <p><a href="employee_dashboard.php" class="log-link">View Dashboard</a></p>
                 <p><a href="login.php?action=logout" class="log-link">Logout</a></p>
             <?php endif; ?>
         </div>
     </div>
 </body>
-
 </html>
+
+<?php
+$conn->close();
+?>

@@ -65,5 +65,8 @@ if (isset($_COOKIE['view-product'])) {
     </div>
 
 </body>
-
 </html>
+
+<?php
+$conn->close();
+?>

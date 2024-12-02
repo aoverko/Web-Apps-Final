@@ -107,5 +107,8 @@ if (!empty($productNames)) {
     </div>
 
 </body>
-
 </html>
+
+<?php
+$conn->close();
+?>
