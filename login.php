@@ -67,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body onload="loadNavbar()" class="login">
     <div id="navbar-area"></div>
-    <div class="form-body">
-        <div class="form-container">
+    <div class="form-body login-body">
+        <div class="form-container login-container">
             <?php if (!isset($_SESSION['username'])): ?>
                 <h2 class="login-heading">Log In</h2>
                 <form action="login.php" method="POST">

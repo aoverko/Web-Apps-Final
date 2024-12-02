@@ -158,13 +158,28 @@ overflow-x: hidden;
     background-color: #0D0B1C;
     color: #EAE7DF;
 }
-.form-body {
+.login-body, .create-acct-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8%;
 }
-.form-container {
+.login-body {
+    margin-top: 4rem;
+}
+.create-acct-body {
+    margin-top: 1rem;
+}
+.create-acct-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 40%; 
+}
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
