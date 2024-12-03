@@ -4,40 +4,22 @@ require "DBdontpublish.php";
 //track last product clicked
 require "product_cookie.php";
 
-// ---- Handle Product Addition ----
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['add_product'])) {
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $image_url = $_POST['image_url'];
-        $price = $_POST['price'];
 
-        $stmt = $conn->prepare("INSERT INTO products (name, description, image_url, price) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sssd", $name, $description, $image_url, $price);
+// ---- Handle Product Deletion ----
+if (isset($_POST['delete_product'])) {
+    $id = $_POST['product_id'];
 
-        if ($stmt->execute()) {
-            echo "Product added successfully.";
-        } else {
-            echo "Error adding product: " . $stmt->error;
-        }
-        $stmt->close();
+    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        echo "Product deleted successfully.";
+    } else {
+        echo "Error deleting product: " . $stmt->error;
     }
-
-    // ---- Handle Product Deletion ----
-    if (isset($_POST['delete_product'])) {
-        $id = $_POST['product_id'];
-
-        $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
-        $stmt->bind_param("i", $id);
-
-        if ($stmt->execute()) {
-            echo "Product deleted successfully.";
-        } else {
-            echo "Error deleting product: " . $stmt->error;
-        }
-        $stmt->close();
-    }
+    $stmt->close();
 }
+
 
 // ---- Fetch Products ----
 $result = $conn->query("SELECT * FROM products");
@@ -72,40 +54,57 @@ if (!$result) {
     <div class="add-product">
         <h1>Employee Product Dashboard</h1>
 
-        <!-- Add New Product Form -->
-        <h2>Add New Product</h2>
-        <form action="product_dashboard.php" method="POST">
-            <input type="text" name="name" placeholder="Product Name" required>
-            <input type="text" name="description" placeholder="Description" required>
-            <input type="text" name="image_url" placeholder="Image URL" required>
-            <input type="number" name="price" placeholder="Price" required step="0.01">
-            <button type="submit" name="add_product">Add Product</button>
-        </form>
-    </div>
-    <!-- Display Current Products -->
-    <h2>Current Products</h2>
-    <div class="catalog">
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()) : ?>
-                <div class="product cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">
-                    <img src="<?php echo htmlspecialchars($row['image_url']); ?>"
-                        alt="<?php echo htmlspecialchars($row['name']); ?>">
-                    <h3><?php echo htmlspecialchars($row['name']); ?></h3>
-                    <p><?php echo htmlspecialchars($row['description']); ?></p>
-                    <p>$<?php echo htmlspecialchars(number_format($row['price'], 2)); ?></p>
-                    <a href="manage_product.php" class="btn">Manage Product</a>
+        <!-- Display Current Products -->
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><h3>Inventory</h3></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($result->num_rows > 0): ?>
+                                <?php while ($row = $result->fetch_assoc()) : ?>
+                                    <tr>
+                                        <div class="product cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">
+                                            <td><img src="<?php echo htmlspecialchars($row['image_url']); ?>"
+                                                    alt="<?php echo htmlspecialchars($row['name']); ?>"
+                                                    style="max-width: 5rem"></td>
+                                            <td>
+                                                <h5><?php echo htmlspecialchars($row['name']); ?></h5>
+                                            </td>
+                                            <td>
+                                                <p><?php echo htmlspecialchars($row['description']); ?></p>
+                                            </td>
+                                            <td>
+                                                <p>$<?php echo htmlspecialchars(number_format($row['price'], 2)); ?></p>
+                                            </td>
+                                            <td><a href="manage_product.php" class="btn cookie-data"
+                                                    data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Manage Product</a></td>
+                                            <form action="product_dashboard.php" method="POST" style="display:inline;">
+                                                <td> <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                                                    <button type="submit" name="delete_product">Delete</button>
+                                            </form>
+                                            </td>
 
-                    <!-- Modify and delete buttons -->
-                    <form action="product_dashboard.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-                        <button type="submit" name="delete_product">Delete</button>
-                    </form>
+                                        </div>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <p>No products available.</p>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No products available.</p>
-        <?php endif; ?>
-    </div>
+            </div>
+        </div>
 </body>
 
 </html>

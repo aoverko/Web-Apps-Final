@@ -1,16 +1,9 @@
 <?php
 // Database connection
-$servername = "54.165.204.136";
-$username = "group1";
-$password = "tg5z4b31iM]";
-$dbname = "group1";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require "DBdontpublish.php";
+require "cart_cookie.php";
+require "product_cookie.php";
+session_start();
 
 // Initialize search variables
 $searchName = "";
@@ -49,11 +42,11 @@ if (!empty($headphoneType)) {
 }
 
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,18 +56,18 @@ $result = $conn->query($sql);
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<script> 
-function loadNavbar() {
-    fetch('navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar-area').innerHTML = data;
-        });
-}
+<script>
+    function loadNavbar() {
+        fetch('navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-area').innerHTML = data;
+            });
+    }
 </script>
 
 <body onload="loadNavbar()">
-    <div id="navbar-area"></div> 
+    <div id="navbar-area"></div>
 
     <div class="container mt-5">
         <h1 class="text-center">Product Catalog</h1>
@@ -107,7 +100,6 @@ function loadNavbar() {
                     <select name="headphone_type" class="form-control">
                         <option value="">Select Type</option>
                         <option value="over-ear" <?php echo ($headphoneType == "over-ear") ? "selected" : ""; ?>>Over-Ear</option>
-                        <option value="on-ear" <?php echo ($headphoneType == "on-ear") ? "selected" : ""; ?>>On-Ear</option>
                         <option value="in-ear" <?php echo ($headphoneType == "in-ear") ? "selected" : ""; ?>>In-Ear</option>
                     </select>
                 </div>
@@ -119,27 +111,30 @@ function loadNavbar() {
 
         <!-- Display Products -->
         <div class="row">
-            <?php
-            if ($result->num_rows > 0) {
-                // Loop through each product
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-md-4 mb-4'>";
-                    echo "<div class='card h-100'>";
-                    echo "<img src='" . htmlspecialchars($row['image_url']) . "' class='card-img-top' alt='" . htmlspecialchars($row['name']) . "'>";
-                    echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'>" . htmlspecialchars($row['name']) . "</h5>";
-                    echo "<p class='card-text'>" . htmlspecialchars($row['description']) . "</p>";
-                    echo "<p class='card-text'><strong>$" . htmlspecialchars($row['price']) . "</strong></p>";
-                    echo "<a href='#' class='btn btn-primary'>Reserve/Purchase</a>";
-                    echo "</div></div></div>";
-                }
-            } else {
-                echo "<p class='text-center'>No products available.</p>";
-            }
-            ?>
+            <?php if ($result->num_rows > 0): ?>
+                <!-- Loop through each product -->
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="<?php echo htmlspecialchars($row['image_url']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($row['description']); ?></p>
+                                <p class="card-text"><strong>$<?php echo htmlspecialchars($row['price']); ?></strong></p>
+                                <a href="#" class="btn btn-primary cart-data" id="quantity-input" 
+                                data-product-name="<?php echo htmlspecialchars($row['name']); ?>">Add to Cart</a>
+                                <a href="#" class="btn btn-primary cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p class="text-center">No products available.</p>
+            <?php endif; ?>
         </div>
-    </div>
+
 </body>
+
 </html>
 
 <?php

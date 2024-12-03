@@ -229,11 +229,6 @@ input[type="password"] {
     color: #C2BEB3;
 }
 
-/*Product Dashboard Styles*/
-.add-product {
-    margin-top: 5%;
-}
-
 /*Cart Styles*/
 .cart {
     display: flex;
@@ -246,4 +241,14 @@ input[type="password"] {
 }
 .total {
     justify-content: end;
+}
+
+/*Product Dashboard Styles*/
+.add-product {
+    margin-top: 5%;
+}
+
+/*Manage Product Styles*/
+.manage-product-container {
+    margin-top: 1rem;
 }

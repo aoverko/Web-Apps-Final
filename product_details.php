@@ -38,7 +38,7 @@ if (isset($_COOKIE['view-product'])) {
     $name = query($conn, 'name', $cookie);
     $price = query($conn, 'price', $cookie);
     $description = query($conn, 'description', $cookie);
-    $stock = query($conn, 'stock', $cookie);
+    $stock = query($conn, 'quantity', $cookie);
 }
 
 ?>
