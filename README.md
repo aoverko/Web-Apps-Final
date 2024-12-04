@@ -36,7 +36,13 @@ Page Designs:
 ## Website Pages
 1) Landing Page: Identity, Bestsellers
 2) Catalog: Wireless Headphones
-3) Login Page
-4) Account Creation
-5) User Cart
-6) Profile
+3) Product Details
+4) User Cart
+5) Login Page
+6) Account Creation
+7) Employee Dashboard
+8) Employee Product Dashboard
+9) Manage Product
+10) Add Product
+11) Manage Employees Dashboard
+12) View Employee Profile
