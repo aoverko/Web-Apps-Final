@@ -252,3 +252,8 @@ input[type="password"] {
 .manage-product-container {
     margin-top: 1rem;
 }
+
+/*Manage Employees Styles*/
+.manage-employees {
+    margin-top: 5rem;
+}

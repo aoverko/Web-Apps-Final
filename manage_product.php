@@ -77,7 +77,6 @@ if (isset($_POST['delete_product'])) {
     }
     $stmt->close();
 }
-
 ?>
 
 
@@ -100,7 +99,6 @@ if (isset($_POST['delete_product'])) {
             .then(data => {
                 document.getElementById('navbar-area').innerHTML = data;
             })
-
     }
 </script>
 

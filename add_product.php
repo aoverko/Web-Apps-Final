@@ -90,6 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body onload="loadNavbar()">
     <div id="navbar-area"></div>
 
+    <div>
+        <h4>Back to Dashboard</h4>
+        <a href="employee_dashboard.php">
+            <img src="SiteAssets/back_arrow.png" style="max-width:3rem">
+        </a>
+    </div>
+
     <!-- Add New Product Form -->
     <h1>Add New Product</h1>
     <form action="add_product.php" method="POST" enctype="multipart/form-data">

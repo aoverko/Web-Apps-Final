@@ -32,7 +32,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lunatech</title>
+    <title>Employee Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="lunatech.css">
 </head>
@@ -64,6 +64,7 @@ if (!$result) {
                     <div class="card-body">
                         <h5 class="card-title">Quick Actions</h5>
                         <a href="product_dashboard.php" class="btn btn-primary me-2">View Products</a>
+                        <a href="add_product.php" class="btn btn-primary me-2">Add Product</a>
                         <?php if ($user['is_admin']) { ?>
                             <a href="manage_employee.php" class="btn btn-primary">Manage Employees</a>
                         <?php } ?>
