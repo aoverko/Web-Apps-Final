@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <th>Username</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Job Title</th>
                                 <th>Actions</th>
                                 <th>Privileges</th>
                             </tr>
@@ -102,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td><?php echo htmlspecialchars($row['username']); ?></td>
                                     <td><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['lastname']); ?></td>
                                     <td><?php echo htmlspecialchars($row['email']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['job_title']); ?></td>
                                     <td>
                                         <a href="employee_profile.php?username=<?php echo urlencode($row['username']); ?>"
                                             class="btn btn-sm btn-outline-primary">View Profile</a>
