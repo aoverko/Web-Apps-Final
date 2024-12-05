@@ -86,7 +86,7 @@ if (isset($_POST['delete_product'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Product</title>
+    <title>Modify Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="lunatech.css">
 </head>
@@ -104,39 +104,77 @@ if (isset($_POST['delete_product'])) {
 
 <body onload="">
     <div id="navbar-area"></div>
-    <div class="manage-product-container">
-        <h1>Manage Product</h1>
-        <form action="manage_product.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
 
-            <img src="<?php echo htmlspecialchars($img) ?>">
-            <input type="hidden" name="current_image" value="<?php echo htmlspecialchars($img); ?>">
-            <div>
-                <label for="image">Upload New Image</label>
-                <input type="file" name="image" accept="image/*">
-            </div>
-            <input type="text" name="name" value="<?php echo htmlspecialchars($db_name) ?>"
-                placeholder="Product Name" required>
-            <input type="text" name="description" value="<?php echo htmlspecialchars($db_description) ?>"
-                placeholder="Product Description" required>
-            <input type="number" name="price" value="<?php echo htmlspecialchars($db_price) ?>" required step="0.01"
-                min="0" placeholder="Price">
-            <input type="number" name="quantity" value="<?php echo htmlspecialchars($stock) ?>" required step="1" min="0"
-                placeholder="Inventory">
-            <div class="col-md-3">
-                <select name="headphone_type" class="form-control" required>
-                    <option value="" disabled selected>Category</option>
-                    <option value="over-ear" <?php if ($category === "over-ear") echo "selected"; ?>>Over-Ear</option>
-                    <option value="in-ear" <?php if ($category === "in-ear") echo "selected"; ?>>In-Ear</option>
-                </select>
-            </div>
-            <button type="submit" name="update_product">Update Product</button>
-        </form>
+    <div class="sidebar">
+        <div class="col-auto">
+            <div class=" d-flex flex-column min-vh-100">
+                <ul class="nav flex-column mb-sm-auto align-items-center align-items-sm-start">
 
-        <form action="manage_product.php" method="POST">
-            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
-            <button type="submit" name="delete_product">Delete</button>
-        </form>
+                    <a href="landing_page.php" class="sidebar-main"><span class="d-sm-in">
+                            <img src="Logos/lunatech_white.png" class="sidebar-img-main"></span></a>
+
+                    <a href="employee_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/home.png" class="sidebar-img"> Home</span></a>
+
+                    <a href="product_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/products.png" class="sidebar-img"> Product Dashboard</span></a>
+
+                    <a href="add_product.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
+
+                    <a href="manage_employee.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="manage-product-container">
+            <div class="back-header">
+                <a href="product_dashboard.php" class="back-link">
+                    <img src="SiteAssets/back_arrow.png" class="back-icon">
+                </a>
+                <div class="back-text">
+                    <span>
+                        <h4 class="back">Back to Product List<h4>
+                    </span>
+                    <h1 class="heading">Modify Product</h1>
+                </div>
+            </div>
+
+
+            <form action="manage_product.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+
+                <img src="<?php echo htmlspecialchars($img) ?>">
+                <input type="hidden" name="current_image" value="<?php echo htmlspecialchars($img); ?>">
+                <div>
+                    <label for="image">Upload New Image</label>
+                    <input type="file" name="image" accept="image/*">
+                </div>
+                <input type="text" name="name" value="<?php echo htmlspecialchars($db_name) ?>"
+                    placeholder="Product Name" required>
+                <input type="text" name="description" value="<?php echo htmlspecialchars($db_description) ?>"
+                    placeholder="Product Description" required>
+                <input type="number" name="price" value="<?php echo htmlspecialchars($db_price) ?>" required step="0.01"
+                    min="0" placeholder="Price">
+                <input type="number" name="quantity" value="<?php echo htmlspecialchars($stock) ?>" required step="1" min="0"
+                    placeholder="Inventory">
+                <div class="col-md-3">
+                    <select name="headphone_type" class="form-control" required>
+                        <option value="" disabled selected>Category</option>
+                        <option value="over-ear" <?php if ($category === "over-ear") echo "selected"; ?>>Over-Ear</option>
+                        <option value="in-ear" <?php if ($category === "in-ear") echo "selected"; ?>>In-Ear</option>
+                    </select>
+                </div>
+                <button type="submit" name="update_product">Update Product</button>
+            </form>
+
+            <form action="manage_product.php" method="POST">
+                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                <button type="submit" name="delete_product">Delete</button>
+            </form>
+        </div>
     </div>
 </body>
 

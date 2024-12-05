@@ -79,9 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form> 
 
             <?php else: ?>
-                <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-                <p><a href="employee_dashboard.php" class="log-link">View Dashboard</a></p>
-                <p><a href="login.php?action=logout" class="log-link">Logout</a></p>
+                <?php 
+                header("Location: employee_dashboard.php");
+                ?>
             <?php endif; ?>
         </div>
     </div>

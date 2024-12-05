@@ -73,63 +73,96 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 </script>
 
-<body onload="loadNavbar()">
+<body onload="">
     <div id="navbar-area"></div>
-    <div class="manage-employees">
-        <div>
-            <h4>Back to Dashboard</h4>
-            <a href="employee_dashboard.php">
-                <img src="SiteAssets/back_arrow.png" style="max-width:3rem">
-            </a>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h2 class="card-title">Employee Directory</h2>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Job Title</th>
-                                <th>Actions</th>
-                                <th>Privileges</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($row = $result->fetch_assoc()) : ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($row['username']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['lastname']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['email']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['job_title']); ?></td>
-                                    <td>
-                                        <a href="employee_profile.php?username=<?php echo urlencode($row['username']); ?>"
-                                            class="btn btn-sm btn-outline-primary">View Profile</a>
-                                    </td>
-                                    <td>
-                                        <form action="manage_employee.php" method="POST">
-                                            <div class="col-md-3">
-                                            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                                                <select name="privileges" class="form-control" required>
-                                                    <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
-                                                    <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
-                                                </select>
-                                                <button type="submit" name="update_priv">Update</button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
 
-                </div>
+    <div class="sidebar">
+        <div class="col-auto">
+            <div class=" d-flex flex-column min-vh-100">
+                <ul class="nav flex-column mb-sm-auto align-items-center align-items-sm-start">
+
+                    <a href="landing_page.php" class="sidebar-main"><span class="d-sm-in">
+                            <img src="Logos/lunatech_white.png" class="sidebar-img-main"></span></a>
+
+                    <a href="employee_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/home.png" class="sidebar-img"> Home</span></a>
+
+                    <a href="product_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/products.png" class="sidebar-img"> Product Dashboard</span></a>
+
+                    <a href="add_product.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
+
+                    <a href="manage_employee.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                </ul>
             </div>
         </div>
     </div>
 
+    <div class="content">
+        <div class="manage-employees">
+            <div class="back-header">
+                <a href="employee_dashboard.php" class="back-link">
+                    <img src="SiteAssets/back_arrow.png" class="back-icon">
+                </a>
+                <div class="back-text">
+                    <span>
+                        <h4 class="back">Back to Dashboard<h4>
+                    </span>
+                    <h1 class="heading">Employee Directory</h1>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title">Current Employees</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Job Title</th>
+                                    <th>Actions</th>
+                                    <th>Privileges</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = $result->fetch_assoc()) : ?>
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($row['username']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['lastname']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['email']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['job_title']); ?></td>
+                                        <td>
+                                            <a href="employee_profile.php?username=<?php echo urlencode($row['username']); ?>"
+                                                class="btn btn-sm btn-outline-primary">View Profile</a>
+                                        </td>
+                                        <td>
+                                            <form action="manage_employee.php" method="POST">
+                                                <div class="col-md-3">
+                                                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                                    <select name="privileges" class="form-control" required>
+                                                        <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
+                                                        <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
+                                                    </select>
+                                                    <button type="submit" name="update_priv">Update</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

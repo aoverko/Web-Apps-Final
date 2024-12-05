@@ -87,36 +87,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 </script>
 
-<body onload="loadNavbar()">
+<body onload="">
     <div id="navbar-area"></div>
 
-    <div>
-        <h4>Back to Dashboard</h4>
-        <a href="employee_dashboard.php">
-            <img src="SiteAssets/back_arrow.png" style="max-width:3rem">
-        </a>
+    <div class="sidebar">
+        <div class="col-auto">
+            <div class=" d-flex flex-column min-vh-100">
+                <ul class="nav flex-column mb-sm-auto align-items-center align-items-sm-start">
+
+                    <a href="landing_page.php" class="sidebar-main"><span class="d-sm-in">
+                            <img src="Logos/lunatech_white.png" class="sidebar-img-main"></span></a>
+
+                    <a href="employee_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/home.png" class="sidebar-img"> Home</span></a>
+
+                    <a href="product_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/products.png" class="sidebar-img"> Product Dashboard</span></a>
+
+                    <a href="add_product.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
+
+                    <a href="manage_employee.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                </ul>
+                <hr>
+            </div>
+        </div>
     </div>
 
-    <!-- Add New Product Form -->
-    <h1>Add New Product</h1>
-    <form action="add_product.php" method="POST" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Product Name" required>
-        <input type="text" name="description" placeholder="Description" required>
-        <input type="number" name="price" placeholder="Price" step="0.01" min="0" required>
-        <input type="number" name="quantity" placeholder="Inventory" required step="1" min="0">
-        <div class="col-md-3">
-            <select name="headphone_type" class="form-control" required>
-                <option value="" disabled selected>Category</option>
-                <option value="over-ear">Over-Ear</option>
-                <option value="in-ear">In-Ear</option>
-            </select>
+
+    <div class="content">
+
+        <div class="back-header">
+            <a href="employee_dashboard.php" class="back-link">
+                <img src="SiteAssets/back_arrow.png" class="back-icon">
+            </a>
+            <div class="back-text">
+                <span>
+                    <h4 class="back">Back to Dashboard<h4>
+                </span>
+                <h1 class="heading">Add New Product</h1>
+            </div>
         </div>
-        <div>
-            <label for="image">Upload Image</label>
-            <input type="file" name="image" accept="image/*">
-        </div>
-        <button type="submit" name="add_product">Add Product</button>
-    </form>
+
+        <!-- Add New Product Form -->
+        <form action="add_product.php" method="POST" enctype="multipart/form-data">
+            <div class="add-pr-left">
+                <input type="text" name="name" placeholder="Product Name" required>
+                <input type="text" name="description" placeholder="Description" required>
+            </div>
+
+            <div class="add-pr-right">
+                <input type="number" name="price" placeholder="Price" step="0.01" min="0" required>
+                <input type="number" name="quantity" placeholder="Inventory" required step="1" min="0">
+                <div class="col-md-3">
+                    <select name="headphone_type" class="form-control" required>
+                        <option value="" disabled selected>Category</option>
+                        <option value="over-ear">Over-Ear</option>
+                        <option value="in-ear">In-Ear</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <label for="image">Upload Image</label>
+                    <input type="file" name="image" accept="image/*">
+                </div>
+
+                <button type="submit" name="add_product">Add Product</button>
+            </div>
+        </form>
+    </div>
     </div>
 </body>
 

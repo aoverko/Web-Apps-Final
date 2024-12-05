@@ -1,34 +1,41 @@
 <?php
 require "DBdontpublish.php";
 session_start();
+$username;
 
 // Verifies a user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
+} else {
+    $username = $_SESSION['username'];
 }
 
 // Checks if the user is an admin
 $stmt = $conn->prepare("SELECT is_admin FROM users WHERE username = ?");
-$stmt->bind_param("s", $_SESSION['username']); 
+$stmt->bind_param("s", $_SESSION['username']);
 $stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$res = $stmt->get_result();
+$user = $res->fetch_assoc();
+
+
+//get logged in user data
+$query = $conn->prepare("SELECT * FROM users where username = ?");
+$query->bind_param("s", $username);
+$query->execute();
+$result = $query->get_result();
+
 
 // Redirects regular employees away from the "Manage Employees" page
 if (!$user['is_admin'] && $_SERVER['REQUEST_URI'] === '/manage_employee.php') {
     header("Location: login.php");
     exit();
 }
-
-$result = $conn->query("SELECT username, firstname, lastname, email FROM users ORDER BY username");
-if (!$result) {
-    die("Query failed: " . $conn->error);
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,31 +55,51 @@ if (!$result) {
     }
 </script>
 
-<body onload="loadNavbar()">
+<body onload="">
     <div id="navbar-area"></div>
 
-    <div class="container mt-5">
-        <div class="row mb-4">
-            <div class="col">
-                <h1>Employee Dashboard</h1>
-            </div>
-        </div>
 
-        <div class="row mb-4">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Quick Actions</h5>
-                        <a href="product_dashboard.php" class="btn btn-primary me-2">View Products</a>
-                        <a href="add_product.php" class="btn btn-primary me-2">Add Product</a>
-                        <?php if ($user['is_admin']) { ?>
-                            <a href="manage_employee.php" class="btn btn-primary">Manage Employees</a>
-                        <?php } ?>
-                    </div>
-                </div>
+    <div class="sidebar">
+        <div class="col-auto">
+            <div class=" d-flex flex-column min-vh-100">
+                <ul class="nav flex-column mb-sm-auto align-items-center align-items-sm-start">
+
+                    <a href="landing_page.php" class="sidebar-main"><span class="d-sm-in">
+                            <img src="Logos/lunatech_white.png" class="sidebar-img-main"></span></a>
+
+                    <a href="employee_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/home.png" class="sidebar-img"> Home</span></a>
+
+                    <a href="product_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/products.png" class="sidebar-img"> Product Dashboard</span></a>
+
+                    <a href="add_product.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
+
+                    <a href="manage_employee.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                </ul>
             </div>
         </div>
+    </div>
+
+
+    <div class="content">
+        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()) : ?>
+                <h4><?php echo htmlspecialchars($row['firstname']) ?></h4>
+                <h4><?php echo htmlspecialchars($row['lastname']) ?></h4>
+                <h4><?php echo htmlspecialchars($row['email']) ?></h4>
+                <h4><?php echo htmlspecialchars($row['job_title']) ?></h4>
+
+        <?php endwhile;
+        endif; ?>
+        <p><a href="login.php?action=logout" class="">Logout</a></p>
+    </div>
+
 </body>
+
 </html>
 
 <?php

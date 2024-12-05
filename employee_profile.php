@@ -11,11 +11,11 @@ if (!isset($_SESSION['username'])) {
 //get username query param
 $username;
 if (isset($_GET['username'])) {
-$username = urldecode($_GET['username']);
-$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
+    $username = urldecode($_GET['username']);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 }
 
 
@@ -102,46 +102,86 @@ if (isset($_POST['delete_employee'])) {
     }
 </script>
 
-<body onload="loadNavbar()">
+<body onload="">
     <div id="navbar-area"></div>
-    <?php if ($result->num_rows > 0): ?>
-    <?php while ($row = $result->fetch_assoc()) : ?>
-        <div>
-            <h3><?php echo htmlspecialchars($row['firstname']) ?></h3>
-            <h3><?php echo htmlspecialchars($row['lastname']) ?></h3>
-            <h3><?php echo htmlspecialchars($row['job_title']) ?></h3>
-        </div>
-        <h2>Status</h2>
-        <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
-            <div class="col-md-3">
-                <input type="hidden" name="emp_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                <input type="hidden" name="emp_user" value="<?php echo htmlspecialchars($row['username']); ?>">
-                <select name="titles" class="form-control" required>
-                    <option value="employee" <?php if ($row['job_title'] === "employee") echo "selected"; ?>>Employee</option>
-                    <option value="manager" <?php if ($row['job_title'] === "manager") echo "selected"; ?>>Manager</option>
-                    <option value="department head" <?php if ($row['job_title'] === "department head") echo "selected"; ?>>Department Head</option>
-                </select>
-                <button type="submit" name="update_title">Update Job Title</button>
-            </div>
-        </form>
-        <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
-            <div class="col-md-3">
-                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                <input type="hidden" name="user" value="<?php echo htmlspecialchars($row['username']); ?>">
-                <select name="privileges" class="form-control" required>
-                    <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
-                    <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
-                </select>
-                <button type="submit" name="update_priv">Update User Privileges</button>
-            </div>
-        </form>
-        <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
-            <td> <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['username']); ?>">
-                <button type="submit" name="delete_employee">Terminate Employee</button>
-        </form>
-    <?php endwhile; endif;?>
 
+    <div class="sidebar">
+        <div class="col-auto">
+            <div class=" d-flex flex-column min-vh-100">
+                <ul class="nav flex-column mb-sm-auto align-items-center align-items-sm-start">
+
+                    <a href="landing_page.php" class="sidebar-main"><span class="d-sm-in">
+                            <img src="Logos/lunatech_white.png" class="sidebar-img-main"></span></a>
+
+                    <a href="employee_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/home.png" class="sidebar-img"> Home</span></a>
+
+                    <a href="product_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/products.png" class="sidebar-img"> Product Dashboard</span></a>
+
+                    <a href="add_product.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
+
+                    <a href="manage_employee.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="back-header">
+            <a href="manage_employee.php" class="back-link">
+                <img src="SiteAssets/back_arrow.png" class="back-icon">
+            </a>
+            <div class="back-text">
+                <span>
+                    <h4 class="back">Back to Employee Directory<h4>
+                </span>
+                <h1 class="heading">Employee Profile</h1>
+            </div>
+        </div>
+
+
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()) : ?>
+                <div>
+                    <h3><?php echo htmlspecialchars($row['firstname']) ?></h3>
+                    <h3><?php echo htmlspecialchars($row['lastname']) ?></h3>
+                    <h3><?php echo htmlspecialchars($row['job_title']) ?></h3>
+                </div>
+                <h2>Status</h2>
+                <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
+                    <div class="col-md-3">
+                        <input type="hidden" name="emp_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                        <input type="hidden" name="emp_user" value="<?php echo htmlspecialchars($row['username']); ?>">
+                        <select name="titles" class="form-control" required>
+                            <option value="Employee" <?php if ($row['job_title'] === "Employee") echo "selected"; ?>>Employee</option>
+                            <option value="Manager" <?php if ($row['job_title'] === "Manager") echo "selected"; ?>>Manager</option>
+                            <option value="Department Head" <?php if ($row['job_title'] === "Department Head") echo "selected"; ?>>Department Head</option>
+                        </select>
+                        <button type="submit" name="update_title">Update Job Title</button>
+                    </div>
+                </form>
+                <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
+                    <div class="col-md-3">
+                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                        <input type="hidden" name="user" value="<?php echo htmlspecialchars($row['username']); ?>">
+                        <select name="privileges" class="form-control" required>
+                            <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
+                            <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
+                        </select>
+                        <button type="submit" name="update_priv">Update User Privileges</button>
+                    </div>
+                </form>
+                <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
+                    <td> <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['username']); ?>">
+                        <button type="submit" name="delete_employee">Terminate Employee</button>
+                </form>
+        <?php endwhile;
+        endif; ?>
+    </div>
 </body>
 
 </html>

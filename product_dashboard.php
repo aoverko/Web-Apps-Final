@@ -49,67 +49,104 @@ if (!$result) {
     }
 </script>
 
-<body onload="loadNavbar()">
+<body onload="">
     <div id="navbar-area"></div>
-    <div class="add-product">
 
-        <div>
-            <h4>Back to Dashboard</h4>
-            <a href="employee_dashboard.php">
-                <img src="SiteAssets/back_arrow.png" style="max-width:3rem">
-            </a>
+    <div class="sidebar">
+        <div class="col-auto">
+            <div class=" d-flex flex-column min-vh-100">
+                <ul class="nav flex-column mb-sm-auto align-items-center align-items-sm-start">
+
+                    <a href="landing_page.php" class="sidebar-main"><span class="d-sm-in">
+                            <img src="Logos/lunatech_white.png" class="sidebar-img-main"></span></a>
+
+                    <a href="employee_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/home.png" class="sidebar-img"> Home</span></a>
+
+                    <a href="product_dashboard.php" class="nav-link">
+                        <span class="d-sm-in"><img src="SiteAssets/products.png" class="sidebar-img"> Product Dashboard</span></a>
+
+                    <a href="add_product.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
+
+                    <a href="manage_employee.php" class="nav-link">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+
+                </ul>
+            </div>
         </div>
+    </div>
 
-        <h1>Product Dashboard</h1>
+    <div class="content">
+        <div class="add-product">
+            <div class="back-header">
+                <a href="employee_dashboard.php" class="back-link">
+                    <img src="SiteAssets/back_arrow.png" class="back-icon">
+                </a>
+                <div class="back-text">
+                    <span>
+                        <h4 class="back">Back to Dashboard<h4>
+                    </span>
+                    <h1 class="heading">Product Dashboard</h1>
+                </div>
+            </div>
 
-        <!-- Display Current Products -->
-        <div class="row">
-            <div class="col">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <h3>Inventory</h3>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($result->num_rows > 0): ?>
-                                <?php while ($row = $result->fetch_assoc()) : ?>
-                                    <tr>
-                                        <div class="product cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">
-                                            <td><img src="<?php echo htmlspecialchars($row['image_url']); ?>"
-                                                    alt="<?php echo htmlspecialchars($row['name']); ?>"
-                                                    style="max-width: 5rem"></td>
-                                            <td>
-                                                <h5><?php echo htmlspecialchars($row['name']); ?></h5>
-                                            </td>
-                                            <td>
-                                                <p><?php echo htmlspecialchars($row['description']); ?></p>
-                                            </td>
-                                            <td>
-                                                <p>$<?php echo htmlspecialchars(number_format($row['price'], 2)); ?></p>
-                                            </td>
-                                            <td><a href="manage_product.php" class="btn cookie-data"
-                                                    data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Manage Product</a></td>
-                                            <form action="product_dashboard.php" method="POST" style="display:inline;">
-                                                <td> <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-                                                    <button type="submit" name="delete_product">Delete</button>
-                                            </form>
-                                            </td>
 
-                                        </div>
-                                    </tr>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <p>No products available.</p>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+
+            <!-- Display Current Products -->
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive inventory-border">
+                        <table class="inventory">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h3>Inventory</h3>
+                                    </th>
+
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($result->num_rows > 0): ?>
+                                    <?php while ($row = $result->fetch_assoc()) : ?>
+                                        <tr>
+                                            <div class="product cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">
+                                                <td><img src="<?php echo htmlspecialchars($row['image_url']); ?>"
+                                                        alt="<?php echo htmlspecialchars($row['name']); ?>"
+                                                        style="max-width: 5rem"></td>
+                                                <td>
+                                                    <h5 id="pr-name"><?php echo htmlspecialchars($row['name']); ?></h5>
+
+                                                    <p id="pr-price">$<?php echo htmlspecialchars(number_format($row['price'], 2)); ?></p>
+                                                </td>
+                                                <td></td>
+                                                <td><button class="inv-btn" id="manage-btn"><a href="manage_product.php"
+                                                            class="inv-btn-link cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Manage Product</a></button></td>
+
+                                                <td><form action="product_dashboard.php" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                                                        <button class="inv-btn" id="delete-btn" type="submit" name="delete_product">
+                                                            <img src="SiteAssets/delete.png" class="img-delete"></button>
+                                                    </form>
+                                                </td>
+
+                                            </div>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <p>No products available.</p>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

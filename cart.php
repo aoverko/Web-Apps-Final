@@ -98,7 +98,7 @@ if (!empty($productNames)) {
         </div>
 
         <div class="total">
-            <?php if (!isset($cartEmpty) && !$cartEmpty): ?>
+            <?php if (!isset($cartEmpty)): ?>
                 <h3>Subtotal: <?php echo number_format($subTotal, 2); ?></h3>
                 <h3>Tax: <?php echo number_format($totalTax, 2); ?></h3>
                 <h2>Total: <?php echo number_format($total, 2); ?></h2>
