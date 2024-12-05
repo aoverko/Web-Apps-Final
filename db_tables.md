@@ -35,7 +35,7 @@ The `Products` table stores details about the products available in the applicat
 | `name`         | VARCHAR(100)     | Name of the product.                   |
 | `description`  | TEXT             | A brief description of the product.    |
 | `price`        | DECIMAL(10, 2)   | Price of the product in USD.           |
-| `stock`        | INT              | Quantity of the product in stock.      |
+| `quantity`        | INT              | Quantity of the product in stock.      |
 | `created_at`   | TIMESTAMP        | Timestamp of when the product was added. |
 | `updated_at`   | TIMESTAMP        | Timestamp of the last update to the product record. |
 | `image_url`    | Image Url        | Image of Product. |
