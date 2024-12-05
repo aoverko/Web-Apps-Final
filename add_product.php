@@ -131,34 +131,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <!-- Add New Product Form -->
-        <form action="add_product.php" method="POST" enctype="multipart/form-data">
+        <form class="add-pr-form" action="add_product.php" method="POST" enctype="multipart/form-data">
+
             <div class="add-pr-left">
-                <input type="text" name="name" placeholder="Product Name" required>
-                <input type="text" name="description" placeholder="Description" required>
+                <label for="name">Product Name</label>
+                <input type="text" name="name" required><br>
+                <label for="description">Description</label>
+                <textarea type="text" name="description" rows="8" required></textarea>
             </div>
 
             <div class="add-pr-right">
-                <input type="number" name="price" placeholder="Price" step="0.01" min="0" required>
-                <input type="number" name="quantity" placeholder="Inventory" required step="1" min="0">
-                <div class="col-md-3">
-                    <select name="headphone_type" class="form-control" required>
-                        <option value="" disabled selected>Category</option>
-                        <option value="over-ear">Over-Ear</option>
-                        <option value="in-ear">In-Ear</option>
-                    </select>
-                </div>
+                <div class="add-pr-right-inner">
+                    <input type="number" name="price" placeholder="Price" step="0.01" min="0" required><br>
+                    <input type="number" name="quantity" placeholder="Inventory" required step="1" min="0"><br>
+                    <div class="">
+                        <select name="headphone_type" class="" required>
+                            <option value="" disabled selected>Category</option>
+                            <option value="over-ear">Over-Ear</option>
+                            <option value="in-ear">In-Ear</option>
+                        </select>
+                    </div>
 
-
-                <div>
-                    <label for="image">Upload Image</label>
-                    <input type="file" name="image" accept="image/*">
+                    <hr>
+                    <div class="new-img-cont">
+                        <label for="image">Upload Image</label>
+                        <input type="file" name="image" accept="image/*" id="new-img">
+                    </div>
                 </div>
 
                 <button type="submit" name="add_product">Add Product</button>
             </div>
         </form>
     </div>
-    </div>
+
 </body>
 
 </html>

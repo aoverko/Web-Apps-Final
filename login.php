@@ -72,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (!isset($_SESSION['username'])): ?>
                 <h2 class="login-heading">Log In</h2>
                 <form action="login.php" method="POST">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input class="login-input" type="text" name="username" placeholder="Username" required>
+                    <input type="password" class="login-input" name="password" placeholder="Password" required>
                     <button type="submit" name="login" class="login-button">Login</button>
                     <a href="signup.php" class="signup-link">Don't have an account? Sign up!</a>
                 </form> 

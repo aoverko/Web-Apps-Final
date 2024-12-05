@@ -20,9 +20,20 @@ if (isset($_POST['delete_product'])) {
     $stmt->close();
 }
 
+// Handle Basic Search
+$searchName = "";
+if (isset($_GET['basic_search'])) {
+    $searchName = $_GET['search_name'] ?? '';
+}
 
 // ---- Fetch Products ----
-$result = $conn->query("SELECT * FROM products");
+$result = null;
+if (!empty($searchName)) {
+    $result = $conn->query("SELECT * FROM products WHERE name LIKE '%" . $conn->real_escape_string($searchName) . "%'");
+} else {
+    $result = $conn->query("SELECT * FROM products");
+}
+
 if (!$result) {
     die("Query failed: " . $conn->error);
 }
@@ -106,8 +117,15 @@ if (!$result) {
 
                                     <th></th>
                                     <th></th>
-                                    <th></th>
-                                    <th></th>
+
+                                    <th>
+                                        <form action="product_dashboard.php" method="GET" class="inv-search-cont">
+                                            <span class="inv-search">
+                                                <input type="text" name="search_name" class="inv-search-input"
+                                                    placeholder="Search Product" value="<?php echo htmlspecialchars($searchName); ?>">
+                                                <button type="submit" name="basic_search" class="inv-search-btn">Search</button></span>
+                                        </form>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,21 +135,23 @@ if (!$result) {
                                             <div class="product cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">
                                                 <td><img src="<?php echo htmlspecialchars($row['image_url']); ?>"
                                                         alt="<?php echo htmlspecialchars($row['name']); ?>"
-                                                        style="max-width: 5rem"></td>
+                                                        style="max-width: 4rem"></td>
                                                 <td>
                                                     <h5 id="pr-name"><?php echo htmlspecialchars($row['name']); ?></h5>
 
                                                     <p id="pr-price">$<?php echo htmlspecialchars(number_format($row['price'], 2)); ?></p>
                                                 </td>
                                                 <td></td>
-                                                <td><button class="inv-btn" id="manage-btn"><a href="manage_product.php"
-                                                            class="inv-btn-link cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Manage Product</a></button></td>
+                                                <td><span class="inv-btns">
+                                                        <button class="inv-btn" id="manage-btn"><a href="manage_product.php"
+                                                                class="inv-btn-link cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Manage Product</a></button>
 
-                                                <td><form action="product_dashboard.php" method="POST" style="display:inline;">
-                                                        <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-                                                        <button class="inv-btn" id="delete-btn" type="submit" name="delete_product">
-                                                            <img src="SiteAssets/delete.png" class="img-delete"></button>
-                                                    </form>
+                                                        <form action="product_dashboard.php" method="POST" style="display:inline;">
+                                                            <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                                                            <button class="inv-btn" id="delete-btn" type="submit" name="delete_product">
+                                                                <img src="SiteAssets/trash.png" class="img-delete"></button>
+                                                        </form>
+                                                    </span>
                                                 </td>
 
                                             </div>
