@@ -9,6 +9,13 @@ if (!$result) {
     die("Query failed: " . $conn->error);
 }
 
+// Checks if the user is an admin
+$stmt = $conn->prepare("SELECT is_admin FROM users WHERE username = ?");
+$stmt->bind_param("s", $_SESSION['username']);
+$stmt->execute();
+$res = $stmt->get_result();
+$user = $res->fetch_assoc();
+
 //get product details based on the cookie
 if (isset($_COOKIE['view-product'])) {
     $cookie = $_COOKIE['view-product'];
@@ -55,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if ($stmt->execute()) {
-            echo "Product updated successfully.";
+            header("Location: product_dashboard.php");
         } else {
             echo "Error updating product: " . $stmt->error;
         }
@@ -122,8 +129,10 @@ if (isset($_POST['delete_product'])) {
                     <a href="add_product.php" class="nav-link">
                         <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
 
-                    <a href="manage_employee.php" class="nav-link">
-                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0 ) echo "hide" ?>">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img
+                        <?php if ($user['is_admin'] == 0) echo "hide" ?>"> 
+                        <?php if ($user['is_admin'] == 1) echo " Manage Employees"?></span></a>
                 </ul>
             </div>
         </div>

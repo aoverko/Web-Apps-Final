@@ -122,8 +122,10 @@ if (isset($_POST['delete_employee'])) {
                     <a href="add_product.php" class="nav-link">
                         <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
 
-                    <a href="manage_employee.php" class="nav-link">
-                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img"> Manage Employees</span></a>
+                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0 ) echo "hide" ?>">
+                        <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img
+                        <?php if ($user['is_admin'] == 0) echo "hide" ?>"> 
+                        <?php if ($user['is_admin'] == 1) echo " Manage Employees"?></span></a>
                 </ul>
             </div>
         </div>

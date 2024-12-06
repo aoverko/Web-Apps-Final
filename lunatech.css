@@ -1,7 +1,9 @@
 body {
   overflow-x: hidden;
 }
-
+.hide {
+  display: none;
+}
 /*----------------------------------------------- Navbar Styles --------------------------------------------------*/
 .navbar {
   position: fixed;
@@ -433,8 +435,8 @@ body {
   margin-left: 1rem;
 }
 .img-delete {
-  max-width: 2rem;
-  margin-top: -0.25rem;
+  max-width: 1.75rem;
+  margin-top: -0.5rem;
 }
 /*----------------------------------------------- Add Product Styles --------------------------------------------*/
 .add-pr-form {
@@ -444,12 +446,14 @@ body {
 }
 
 .add-pr-left {
+  background-color: #f8f9fa;
   display: inline-block;
   vertical-align: top;
   width: 62%; 
   padding: 3% 4%;
 }
 .add-pr-right {
+  background-color: #f8f9fa;
   position: relative;
   display: inline-block;
   vertical-align: top;
