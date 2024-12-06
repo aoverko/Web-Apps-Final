@@ -24,7 +24,6 @@ $query = $conn->prepare("SELECT * FROM users where username = ?");
 $query->bind_param("s", $username);
 $query->execute();
 $result = $query->get_result();
-
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +37,12 @@ $result = $query->get_result();
     <link rel="stylesheet" href="lunatech.css">
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+</style>
 
 <script>
     function loadNavbar() {
@@ -69,10 +74,10 @@ $result = $query->get_result();
                     <a href="add_product.php" class="nav-link">
                         <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
 
-                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0 ) echo "hide" ?>">
+                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0) echo "hide" ?>">
                         <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img
-                        <?php if ($user['is_admin'] == 0) echo "hide" ?>"> 
-                        <?php if ($user['is_admin'] == 1) echo " Manage Employees"?></span></a>
+                        <?php if ($user['is_admin'] == 0) echo "hide" ?>">
+                            <?php if ($user['is_admin'] == 1) echo " Manage Employees" ?></span></a>
                 </ul>
             </div>
         </div>
@@ -80,19 +85,21 @@ $result = $query->get_result();
 
 
     <div class="content">
-        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()) : ?>
-                <h4><?php echo htmlspecialchars($row['firstname']) ?></h4>
-                <h4><?php echo htmlspecialchars($row['lastname']) ?></h4>
-                <h4><?php echo htmlspecialchars($row['email']) ?></h4>
-                <h4><?php echo htmlspecialchars($row['job_title']) ?></h4>
-
-        <?php endwhile;
-        endif; ?>
-        <p><a href="login.php?action=logout" class="">Logout</a></p>
+        <div class="user-prfl-cont">
+            <div class="user-prfl">
+                <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+                <?php if ($result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()) : ?>
+                        <img src="SiteAssets/user_profile.png" id="user-img">
+                        <h2><?php echo htmlspecialchars($row['job_title']) ?></h2>
+                        <h3><?php echo htmlspecialchars($row['firstname'] . " " . $row['lastname']) ?></h3>
+                        <h4><?php echo htmlspecialchars($row['email']) ?></h4>
+                <?php endwhile;
+                endif; ?>
+                <a href="login.php?action=logout" class="">Logout</a>
+            </div>
+        </div>
     </div>
-
 </body>
 
 </html>

@@ -29,8 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("isssss", $is_admin, $username, $email, $password, $lname, $fname);
 
         if ($stmt->execute()) {
-            echo "Account created successfully! You can now log in.";
-            header("Refresh: 2; url=login.php");
+            header("Location: login.php");
             exit();
         } else {
             echo "Error: Could not create account. Username might be taken.";
@@ -72,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (!isset($_SESSION['username'])): ?>
                 <h2 class="login-heading">Create an Account</h2>
                 <form action="signup.php" method="POST">
-                    <input type="text" name="fname" placeholder="First Name" required>
-                    <input type="text" name="lname" placeholder="Last Name" required>
-                    <input type="text" name="email" placeholder="email@lunatech.com" required>
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input class="signup-input" type="text" name="fname" placeholder="First Name" required>
+                    <input class="signup-input" type="text" name="lname" placeholder="Last Name" required>
+                    <input class="signup-input" type="text" name="email" placeholder="email@lunatech.com" required>
+                    <input class="signup-input" type="text" name="username" placeholder="Username" required>
+                    <input class="signup-input" type="password" name="password" placeholder="Password" required>
                     <button type="submit" name="create_account" class="acct-button">Create Account</button>
                     <a href="login.php" class="login-link">Already have an account? Log in!</a>
                 </form>

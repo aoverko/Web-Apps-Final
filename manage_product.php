@@ -129,60 +129,81 @@ if (isset($_POST['delete_product'])) {
                     <a href="add_product.php" class="nav-link">
                         <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
 
-                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0 ) echo "hide" ?>">
+                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0) echo "hide" ?>">
                         <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img
-                        <?php if ($user['is_admin'] == 0) echo "hide" ?>"> 
-                        <?php if ($user['is_admin'] == 1) echo " Manage Employees"?></span></a>
+                        <?php if ($user['is_admin'] == 0) echo "hide" ?>">
+                            <?php if ($user['is_admin'] == 1) echo " Manage Employees" ?></span></a>
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="content">
+
+        <div class="back-header">
+            <a href="product_dashboard.php" class="back-link">
+                <img src="SiteAssets/back_arrow.png" class="back-icon">
+            </a>
+            <div class="back-text">
+                <span>
+                    <h4 class="back">Back to Product List<h4>
+                </span>
+                <h1 class="heading">Modify Product</h1>
+            </div>
+        </div>
+
         <div class="manage-product-container">
-            <div class="back-header">
-                <a href="product_dashboard.php" class="back-link">
-                    <img src="SiteAssets/back_arrow.png" class="back-icon">
-                </a>
-                <div class="back-text">
-                    <span>
-                        <h4 class="back">Back to Product List<h4>
-                    </span>
-                    <h1 class="heading">Modify Product</h1>
-                </div>
+            <div class="manage-left">
+                <form action="manage_product.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+
+                    <div class="manage-img-cont">
+                        <img src="<?php echo htmlspecialchars($img) ?>" class="manage-img">
+                        <input type="hidden" name="current_image" value="<?php echo htmlspecialchars($img); ?>">
+                        <div class="manage-img-upload">
+                            <span><label for="image">Upload New Image</label></span>
+                            <input type="file" name="image" accept="image/*" id="manage-img-upload">
+                        </div>
+                    </div>
+                    <div class="manage-left-inner">
+                        <label for="name">Product Name</label>
+                        <input type="text" name="name" value="<?php echo htmlspecialchars($db_name) ?>" required>
+                        <label for="description">Product Description</label>
+                        <textarea type="text" name="description" required rows="6"><?php echo htmlspecialchars($db_description) ?></textarea>
+                    </div>
             </div>
 
+            <div class="divider"></div>
 
-            <form action="manage_product.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
-
-                <img src="<?php echo htmlspecialchars($img) ?>">
-                <input type="hidden" name="current_image" value="<?php echo htmlspecialchars($img); ?>">
-                <div>
-                    <label for="image">Upload New Image</label>
-                    <input type="file" name="image" accept="image/*">
+            <div class="manage-right">
+                <div class="input-group">
+                    <label for="price">Set Price  </label>
+                    <input type="number" name="price" value="<?php echo htmlspecialchars($db_price) ?>" required step="0.01"
+                        min="0" placeholder="Price">
                 </div>
-                <input type="text" name="name" value="<?php echo htmlspecialchars($db_name) ?>"
-                    placeholder="Product Name" required>
-                <input type="text" name="description" value="<?php echo htmlspecialchars($db_description) ?>"
-                    placeholder="Product Description" required>
-                <input type="number" name="price" value="<?php echo htmlspecialchars($db_price) ?>" required step="0.01"
-                    min="0" placeholder="Price">
-                <input type="number" name="quantity" value="<?php echo htmlspecialchars($stock) ?>" required step="1" min="0"
-                    placeholder="Inventory">
-                <div class="col-md-3">
-                    <select name="headphone_type" class="form-control" required>
+                <div class="input-group">
+                    <label for="quantity">Inventory </label>
+                    <input type="number" name="quantity" value="<?php echo htmlspecialchars($stock) ?>" required step="1" min="0"
+                        placeholder="Inventory">
+                </div>
+
+                <div class="">
+                    <select name="headphone_type" class="" required>
                         <option value="" disabled selected>Category</option>
                         <option value="over-ear" <?php if ($category === "over-ear") echo "selected"; ?>>Over-Ear</option>
                         <option value="in-ear" <?php if ($category === "in-ear") echo "selected"; ?>>In-Ear</option>
                     </select>
                 </div>
-                <button type="submit" name="update_product">Update Product</button>
-            </form>
 
-            <form action="manage_product.php" method="POST">
-                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
-                <button type="submit" name="delete_product">Delete</button>
-            </form>
+                <button type="submit" name="update_product">Update Product</button>
+                </form>
+
+                <form action="manage_product.php" method="POST">
+                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                    <button type="submit" name="delete_product" id="manage-delete">Delete</button>
+                </form>
+
+            </div>
         </div>
     </div>
 </body>

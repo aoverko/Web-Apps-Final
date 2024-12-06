@@ -8,6 +8,13 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+// Checks if the user is an admin
+$stmt = $conn->prepare("SELECT is_admin FROM users WHERE username = ?");
+$stmt->bind_param("s", $_SESSION['username']);
+$stmt->execute();
+$res = $stmt->get_result();
+$user = $res->fetch_assoc();
+
 //get username query param
 $username;
 if (isset($_GET['username'])) {
@@ -68,7 +75,7 @@ if (isset($_POST['delete_employee'])) {
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        header("Location: employee_profile.php?username=" . urlencode($username)); //redirect to refresh the page
+        header("Location: manage_employee.php"); //redirect to refresh the page
         exit();
     } else {
         echo "Error terminating employee: " . $stmt->error;
@@ -122,10 +129,10 @@ if (isset($_POST['delete_employee'])) {
                     <a href="add_product.php" class="nav-link">
                         <span class="d-sm-inline"><img src="SiteAssets/add_product.png" class="sidebar-img"> Add Product</span></a>
 
-                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0 ) echo "hide" ?>">
+                    <a href="manage_employee.php" class="nav-link <?php if ($user['is_admin'] == 0) echo "hide" ?>">
                         <span class="d-sm-inline"><img src="SiteAssets/employee.png" class="sidebar-img
-                        <?php if ($user['is_admin'] == 0) echo "hide" ?>"> 
-                        <?php if ($user['is_admin'] == 1) echo " Manage Employees"?></span></a>
+                        <?php if ($user['is_admin'] == 0) echo "hide" ?>">
+                            <?php if ($user['is_admin'] == 1) echo " Manage Employees" ?></span></a>
                 </ul>
             </div>
         </div>
@@ -147,40 +154,50 @@ if (isset($_POST['delete_employee'])) {
 
         <?php if ($result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()) : ?>
-                <div>
-                    <h3><?php echo htmlspecialchars($row['firstname']) ?></h3>
-                    <h3><?php echo htmlspecialchars($row['lastname']) ?></h3>
-                    <h3><?php echo htmlspecialchars($row['job_title']) ?></h3>
+                <div class="emp-prfl-cont">
+                    <div class="emp-prfl-left">
+                        <img src="SiteAssets/user_profile.png" id="profile-img">
+                        <h3><?php echo htmlspecialchars($row['firstname'] . " " . $row['lastname']) ?></h3>
+                            <h2><?php echo htmlspecialchars($row['job_title']) ?></h2>
+                    </div>
+
+                    <div class="emp-prfl-right">
+                        <h4>Status</h4>
+                        <div class="emp-select">
+                            <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
+                                <div class="">
+                                    <input type="hidden" name="emp_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                    <input type="hidden" name="emp_user" value="<?php echo htmlspecialchars($row['username']); ?>">
+                                    <select name="titles" class="" required>
+                                        <option value="Employee" <?php if ($row['job_title'] === "Employee") echo "selected"; ?>>Employee</option>
+                                        <option value="Manager" <?php if ($row['job_title'] === "Manager") echo "selected"; ?>>Manager</option>
+                                        <option value="Department Head" <?php if ($row['job_title'] === "Department Head") echo "selected"; ?>>Department Head</option>
+                                    </select>
+                                    <button type="submit" name="update_title">Update Job Title</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="emp-select">
+                            <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
+                                <div class="">
+                                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                    <input type="hidden" name="user" value="<?php echo htmlspecialchars($row['username']); ?>">
+                                    <select name="privileges" class="" required>
+                                        <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
+                                        <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
+                                    </select>
+                                    <button type="submit" name="update_priv">Update Privileges</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
+                            <td> <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['username']); ?>">
+                                <button class="term-btn" type="submit" name="delete_employee">Terminate Employee</button>
+                        </form>
+                    </div>
                 </div>
-                <h2>Status</h2>
-                <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
-                    <div class="col-md-3">
-                        <input type="hidden" name="emp_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                        <input type="hidden" name="emp_user" value="<?php echo htmlspecialchars($row['username']); ?>">
-                        <select name="titles" class="form-control" required>
-                            <option value="Employee" <?php if ($row['job_title'] === "Employee") echo "selected"; ?>>Employee</option>
-                            <option value="Manager" <?php if ($row['job_title'] === "Manager") echo "selected"; ?>>Manager</option>
-                            <option value="Department Head" <?php if ($row['job_title'] === "Department Head") echo "selected"; ?>>Department Head</option>
-                        </select>
-                        <button type="submit" name="update_title">Update Job Title</button>
-                    </div>
-                </form>
-                <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
-                    <div class="col-md-3">
-                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                        <input type="hidden" name="user" value="<?php echo htmlspecialchars($row['username']); ?>">
-                        <select name="privileges" class="form-control" required>
-                            <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
-                            <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
-                        </select>
-                        <button type="submit" name="update_priv">Update User Privileges</button>
-                    </div>
-                </form>
-                <form action="employee_profile.php?username=<?php echo urlencode($row['username']); ?>" method="POST">
-                    <td> <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                        <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['username']); ?>">
-                        <button type="submit" name="delete_employee">Terminate Employee</button>
-                </form>
         <?php endwhile;
         endif; ?>
     </div>

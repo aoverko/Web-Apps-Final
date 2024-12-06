@@ -113,8 +113,8 @@ if (!$result) {
             <!-- Display Current Products -->
             <div class="row">
                 <div class="col">
-                    <div class="table-responsive inventory-border">
-                        <table class="inventory">
+                    <div class="table-responsive table-border">
+                        <table class="my-table">
                             <thead>
                                 <tr>
                                     <th>
@@ -150,7 +150,7 @@ if (!$result) {
                                                 <td></td>
                                                 <td><span class="inv-btns">
                                                         <button class="inv-btn" id="manage-btn"><a href="manage_product.php"
-                                                                class="inv-btn-link cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Manage Product</a></button>
+                                                                class="inv-btn-link cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">Modify Product</a></button>
 
                                                         <form action="product_dashboard.php" method="POST" style="display:inline;">
                                                             <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">

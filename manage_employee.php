@@ -117,9 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="row">
                 <div class="col">
-                    <h3 class="card-title">Current Employees</h3>
-                    <div class="table-responsive">
-                        <table class="table">
+                    <div class="table-responsive table-border">
+                        <table class="table my-table">
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -138,20 +137,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <td><?php echo htmlspecialchars($row['email']); ?></td>
                                         <td><?php echo htmlspecialchars($row['job_title']); ?></td>
                                         <td>
-                                            <a href="employee_profile.php?username=<?php echo urlencode($row['username']); ?>"
-                                                class="btn btn-sm btn-outline-primary">View Profile</a>
+                                            <a class="emp-btn" href="employee_profile.php?username=<?php echo urlencode($row['username']); ?>">View Profile</a>
                                         </td>
-                                        <td>
-                                            <form action="manage_employee.php" method="POST">
-                                                <div class="col-md-3">
-                                                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                                                    <select name="privileges" class="form-control" required>
-                                                        <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
-                                                        <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
-                                                    </select>
-                                                    <button type="submit" name="update_priv">Update</button>
-                                                </div>
-                                            </form>
+                                        <td><span>
+                                                <form action="manage_employee.php" method="POST">
+                                                    <div class="emp-priv">
+                                                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                                        <select name="privileges" class="" required>
+                                                            <option value="1" <?php if ($row['is_admin']) echo "selected"; ?>>Admin</option>
+                                                            <option value="0" <?php if (!$row['is_admin']) echo "selected"; ?>>User</option>
+                                                        </select>
+                                                        <button type="submit" name="update_priv" class="emp-btn">Update</button>
+                                                    </div>
+                                                </form>
+                                            </span>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
