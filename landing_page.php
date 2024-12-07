@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lunatech</title>
+    <title>Lunatech</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="lunatech.css">
 </head>
@@ -60,25 +60,25 @@ $name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
     <div class="featured">
         <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name1 ?>">
             <a href="product_details.php">
-                <img src="<?php echo $imgURL1 ?>" class="card-img" alt="...">
+                <img src="<?php echo $imgURL1 ?>" class="ft-img" alt="...">
                 <div>
-                    <p class="card-text"><?php echo $name1 ?></p>
+                    <p class="ft-text"><?php echo $name1 ?></p>
                 </div>
             </a>
         </div>
         <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name2 ?>">
             <a href="product_details.php">
-                <img src="SiteAssets/Products/blue_glow_headphones.png" class="card-img" alt="...">
+                <img src="SiteAssets/Products/blue_glow_headphones.png" class="ft-img" alt="...">
                 <div>
-                    <p class="card-text"><?php echo $name2 ?></p>
+                    <p class="ft-text"><?php echo $name2 ?></p>
                 </div>
             </a>
         </div>
         <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name3 ?>">
             <a href="product_details.php">
-                <img src="SiteAssets/Products/pink_headphones.png" class="card-img" alt="...">
+                <img src="SiteAssets/Products/pink_headphones.png" class="ft-img" alt="...">
                 <div>
-                    <p class="card-text"><?php echo $name3 ?></p>
+                    <p class="ft-text"><?php echo $name3 ?></p>
                 </div>
             </a>
         </div>

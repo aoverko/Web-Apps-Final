@@ -10,7 +10,7 @@ body {
   background-color: #0d0b1c;
   min-width: 100vw;
   top: 0;
-  z-index: 1;
+  z-index: 1000;
 }
 .nav-box,
 .nav-left,
@@ -92,13 +92,17 @@ body {
   text-decoration: none;
   color: #0d0b1c;
 }
-.card-img {
-  border-radius: 8%;
+/* Product Image Styling */
+.ft-img {
+  border-radius: 5%;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
 }
-.card-img:hover .card-text:hover {
+.ft-img:hover .ft-text:hover {
   opacity: 70%;
 }
-.card-text {
+.ft-text {
   display: flex;
   color: white;
   align-items: center;
@@ -107,14 +111,125 @@ body {
   font-weight: 500;
   font-size: 22px;
 }
-.card-body {
+.product-card {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  border: none;
+  justify-content: center;
+  text-align: center;
   width: 20%;
-  margin: 3%;
-  border-radius: 100% 100% 5% 5%;
+  max-width: 180px;
+  margin: 1rem;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+.product-card:hover {
+  transform: scale(1.05);
+}
+/*----------------------------------------------- Product Catalog -----------------------------------------------*/
+/* Split Layout */
+.catalog {
+  display: flex;
+}
+
+#adv-search-sidebar {
+  position: fixed;
+  left: 0;
+  width: 20%;
+  height: 100vh;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ccc;
+  padding: 1rem;
+  z-index: 100;
+}
+#adv-search-sidebar .form-control {
+  margin-bottom: 1rem;
+}
+#adv-search-sidebar button {
+  margin-top: 1rem;
+  padding: 0.25rem 1rem;
+  outline: none;
+  background-color: #343f5e;
+  color: #fff;
+  border-radius: 5px;
+}
+#adv-search-sidebar button:hover {
+  background-color: #232c47;
+}
+
+.basic-search {
+  margin-bottom: 1rem;
+}
+.catalog-head {
+  margin-left: 1rem;
+}
+.basic-search input {
+  border: 2px solid #ccc;
+}
+.basic-search button {
+  margin-left: 1rem;
+  margin-right: 1.5rem;
+  padding: 0 1rem 0;
+  outline: none;
+  border: none;
+  background-color: #343f5e;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Main Content Area */
+#catalog-content {
+  margin-left: 22%;
+  width: 100%;
+}
+.catalog-card {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: none !important;
+  transition: transform 0.2s ease;
+}
+.catalog-card:hover {
+  transform: scale(1.05);
+}
+.catalog-card a {
+  text-decoration: none;
+  color: #000;
+}
+.catalog-card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.catalog-img {
+  margin-left: 1rem;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 87%;
+  border-radius: 3px;
+}
+.catalog-card-title {
+  white-space: nowrap;
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
+  max-width: 100%;
+}
+.catalog-card-text {
+  font-weight: 500;
+}
+.catalog-add-2-cart {
+  background-color: #343f5e;
+  color: white !important;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 3px;
+  text-align: center;
+}
+.catalog-add-2-cart:hover {
+  background-color: #46547d;
 }
 
 /*-------------------------------------------- Product Details Styles --------------------------------------------*/
@@ -132,6 +247,7 @@ body {
 }
 #product-img {
   width: 120%;
+  border-radius: 3px;
 }
 .product-details {
   display: flex;
@@ -140,18 +256,29 @@ body {
   margin-top: -1%;
   width: 50%;
 }
+.pr-descr {
+  font-weight: 500;
+}
 .product-details input {
   width: 12%;
 }
 #cart-pr-dets {
-  background-color: #0d0b1c;
-  color: aliceblue;
+  background-color: #343f5e;
+  color: white;
+}
+#buy-pr-dets {
+  border: 1px solid #232c47;
+  background-color: #f8f9fa;
+  color: #000;
+  font-weight: 500;
 }
 #cart-pr-dets,
 #buy-pr-dets {
   margin: 1%;
   padding: 1%;
-  border-color: #0d0b1c;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 2px;
 }
 
 /*------------------------------------------------ Login Page Styles ---------------------------------------------*/
@@ -703,7 +830,7 @@ body {
 }
 .emp-prfl-left {
   width: 40%;
-  align-items: center; 
+  align-items: center;
 }
 .emp-prfl-right {
   width: 50%;
@@ -728,7 +855,8 @@ body {
   padding: 0.5rem;
   width: 13rem;
 }
-.emp-select button, .term-btn {
+.emp-select button,
+.term-btn {
   background-color: #343f5e;
   color: white;
   padding: 0.5rem 1rem;
