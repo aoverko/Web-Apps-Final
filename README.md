@@ -26,8 +26,8 @@ Our website would require a landing page to display our company name and a quick
 DB Table Architecture:
 [see tables](db_tables.md)
 
-Page Designs:
-[see page designs](page_designs.md)
+WireFrames:
+[see wireframes](page_designs.md)
 
 ### Color Scheme
 ![Color Scheme](SiteAssets/color_scheme.png)
