@@ -61,5 +61,5 @@ Disclaimer: this site is NOT YET scalable or size responsive
 ![Modify Product](PageDesigns/modify.png)
 ![Add Product](PageDesigns/add_new.png)
 ![Employees](PageDesigns/employees.png)
-![Employee Profile](PageDesigns/employees.png)
+![Employee Profile](PageDesigns/employee_profile.png)
 
