@@ -147,14 +147,15 @@ body {
 }
 #adv-search-sidebar button {
   margin-top: 1rem;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   outline: none;
   background-color: #343f5e;
   color: #fff;
   border-radius: 5px;
+  border: none;
 }
 #adv-search-sidebar button:hover {
-  background-color: #232c47;
+  background-color: #46547d;
 }
 
 .basic-search {
@@ -281,6 +282,102 @@ body {
   border-radius: 2px;
 }
 
+/*----------------------------------------------- Cart Styles ----------------------------------------------------*/
+/* Parent container to align the cart and total sections */
+.cart-container {
+  margin-top: 4rem;
+  display: flex;             
+  width: 100%;               
+  gap: 1rem;                
+}
+.cart-head {
+  white-space: nowrap;
+}
+
+
+/* Cart Table Section */
+/*Note: borrowed table styling from the product dashboard*/
+.cart-table-container {
+  padding: 1rem;
+  margin-left: 3rem;
+  width: 65%;
+  align-items: center;
+}
+.cart-img-container {
+  display: flex;
+  margin-left: -1rem;
+  padding: 0.5rem 0 0.5rem;
+}
+.cart-pr-img {
+  max-width: 4rem;
+  border-radius: 3px;
+  margin-left: 2rem;
+}
+.cart-text p, .cart-text h5 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
+  margin-left: -5rem;
+}
+.cart-pr-price {
+  font-weight: 500;
+  justify-content: flex-end;
+  margin-right: 0;
+}
+
+.cart-quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px; 
+  width: 100%
+}
+.cart-quantity-container label {
+  margin: 0;
+  font-weight: 500;
+}
+.cart-pr-qty {
+  width: 3rem; 
+  box-sizing: border-box;
+  margin-right: 1rem;
+}
+.cart-pr-delete {
+  max-width: 2rem;
+  margin-left: -0.5rem;
+}
+.cart-pr-delete:hover {
+  cursor: pointer;
+}
+
+/* Total Section */
+.total {  
+  display: flex; 
+  flex-direction: column;
+  padding: 1.5rem; 
+  text-align: right;                    
+  margin-top: 1rem;                               
+  width: 25%;                         
+  background-color: #f9f9f9;           
+  border-radius: 8px; 
+  border: 1px solid #343f5e;
+  align-self: flex-start;              
+}
+.total-text {
+  width: 100%;
+}
+.buy-btn {
+  margin-top: 2.5rem;
+  background-color: #343f5e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%
+}
+.buy-btn:hover:hover {
+  background-color: #46547d;
+}
+
 /*------------------------------------------------ Login Page Styles ---------------------------------------------*/
 .login {
   font-family: Arial, sans-serif;
@@ -375,20 +472,6 @@ body {
   border-radius: 4px;
   background-color: #0d0b1c;
   color: #eae7df;
-}
-
-/*----------------------------------------------- Cart Styles ----------------------------------------------------*/
-.cart {
-  display: flex;
-  justify-content: center;
-  align-items: left;
-  flex-direction: column;
-}
-.in-cart {
-  justify-content: left;
-}
-.total {
-  justify-content: end;
 }
 
 /*---------------------------------------------- Sidebar Styles --------------------------------------------------*/
@@ -536,6 +619,10 @@ body {
 }
 .my-table tr:last-child td {
   border-bottom: none;
+}
+#pr-img {
+  max-width: 4rem;
+  border-radius: 3px;
 }
 #pr-name,
 #pr-price {

@@ -141,10 +141,9 @@ if (!$result) {
                                             <div class="product cookie-data" data-product-id="<?php echo htmlspecialchars($row['name']) ?>">
                                                 <td><img src="<?php echo htmlspecialchars($row['image_url']); ?>"
                                                         alt="<?php echo htmlspecialchars($row['name']); ?>"
-                                                        style="max-width: 4rem"></td>
+                                                    id="pr-img"></td>
                                                 <td>
                                                     <h5 id="pr-name"><?php echo htmlspecialchars($row['name']); ?></h5>
-
                                                     <p id="pr-price">$<?php echo htmlspecialchars(number_format($row['price'], 2)); ?></p>
                                                 </td>
                                                 <td></td>
