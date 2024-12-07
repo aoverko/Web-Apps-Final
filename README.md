@@ -46,3 +46,5 @@ Page Designs:
 10) Add Product
 11) Manage Employees Dashboard
 12) View Employee Profile
+
+Disclaimer: this site is NOT YET scalable or size responsive
