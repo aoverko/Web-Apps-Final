@@ -186,33 +186,33 @@ if (!empty($productNames)) {
 
     <div class="row">
         <div class="cart-container">
-            <!-- Cart Table Section -->
-            <div class="cart-table-container">
-                <div class="table-responsive table-border">
-                    <table class="my-table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <h3 class="cart-head">Your Cart</h3>
-                                </th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $subTotal = 0;
-                            $totalTax = 0;
-                            $total = 0;
-
-                            if (isset($cartEmpty) && $cartEmpty): ?>
-                                <p>Your cart is empty.</p>
-                            <?php elseif ($result && $result->num_rows > 0): ?>
-                                <?php while ($row = $result->fetch_assoc()) : ?>
-                                    <!-- Get quantities of each product -->
-                                    <?php
+            <?php if (isset($cartEmpty) && $cartEmpty): ?>
+                <!-- Display 'Cart is empty' message -->
+                <div class="empty-cart-message">
+                    <h3 style="margin-left: 1rem">Your cart is empty.</h3>
+                </div>
+            <?php elseif ($result && $result->num_rows > 0): ?>
+                <!-- Cart Table Section -->
+                <div class="cart-table-container">
+                    <div class="table-responsive table-border">
+                        <table class="my-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h3 class="cart-head">Your Cart</h3>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $subTotal = 0;
+                                $totalTax = 0;
+                                while ($row = $result->fetch_assoc()) :
+                                    // Get quantities of each product
                                     $quantity = 0;
                                     foreach ($productDetails as $item) {
                                         if ($item['name'] === $row['name']) {
@@ -224,7 +224,7 @@ if (!empty($productNames)) {
                                     // Calculate subtotal and tax
                                     $subTotal += $row['price'] * $quantity;
                                     $totalTax += ($row['price'] * $quantity) * 0.06;
-                                    ?>
+                                ?>
                                     <!-- Display Cart Items -->
                                     <tr>
                                         <td>
@@ -254,24 +254,29 @@ if (!empty($productNames)) {
                                 <?php
                                 $total = $subTotal + $totalTax; // Calculate total
                                 ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Total Section -->
-            <div class="total">
-                <?php if (!isset($cartEmpty)): ?>
+                <!-- Total Section -->
+                <div class="total">
                     <div class="total-text">
                         <h4 class="cart-subtotal">Subtotal: $<?php echo number_format($subTotal, 2); ?></h4>
                         <h5 class="cart-tax">Tax: $<?php echo number_format($totalTax, 2); ?></h5>
                         <h2 class="cart-total">Total: $<?php echo number_format($total, 2); ?></h2>
                     </div>
-                    <div id="liveAlertPlaceholder"></div>
-                    <button type="button" class="buy-btn" id="liveAlertBtn">Buy Now</button>
-                <?php endif; ?>
-            </div>
+                    <form action="cart.php" method="POST">
+                        <div id="liveAlertPlaceholder"></div>
+                        <button type="button" class="buy-btn" id="liveAlertBtn">Buy Now</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <!-- Fallback for unexpected conditions -->
+                <div class="empty-cart-message">
+                    <p>Your cart is empty.</p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

@@ -74,19 +74,23 @@ body {
 }
 
 /*------------------------------------------- Landing Page Bestsellers -------------------------------------------*/
+.ft-deals {
+  background-color: #0d0b1c;
+}
 .featured {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 10%;
-  margin-top: 4%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .feature-text {
   display: flex;
   justify-content: center;
   align-items: center;
   color: aliceblue;
-  margin-top: 5%;
+  padding-top: 2rem;
 }
 .featured a {
   text-decoration: none;
@@ -126,6 +130,65 @@ body {
 .product-card:hover {
   transform: scale(1.05);
 }
+/*------------------------------------------------ Image Banners -----------------------------------------------*/
+.fade-in {
+  opacity: 0; /* Initially make the image invisible */
+  transition: opacity 1.5s ease-in; /* Transition over 2 seconds */
+}
+.fade-in.visible {
+  opacity: 1; /* Fully visible */
+}
+.img-banner-1 {
+  position: relative;
+  display: inline-block; 
+  color: white; 
+  font-weight: 500;
+}
+.img-banner-1 img {
+  display: block; 
+  width: 100%;
+}
+.img-banner-1 h1,
+.img-banner-1 h3,
+.img-banner-1 a {
+  position: absolute; 
+  width: 100%;
+  left: 50%; 
+}
+#img1-text1 {
+  margin-left: -1rem;
+  top: 20%;
+  font-size: 4rem; 
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+#img1-text2 {
+  margin-left: -1rem;
+  top: 36%; 
+  font-size: 2.25rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  
+}
+#img1-btn {
+  margin-left: 10rem;
+  top: 68%; 
+  width: 15rem;
+  background-color: #343f5e79; 
+  color: white; 
+  padding: 10px 20px; 
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid #fff; 
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+#img1-btn:hover {
+  cursor: pointer; 
+  background-color: #343f5ea7; 
+}
+
+
 /*----------------------------------------------- Product Catalog -----------------------------------------------*/
 /* Split Layout */
 .catalog {
@@ -244,10 +307,10 @@ body {
   display: flex;
   align-items: flex-start;
   width: 30%;
-  margin-right: 3%;
+  margin-right: 2%;
 }
 #product-img {
-  width: 120%;
+  width: 110%;
   border-radius: 3px;
 }
 .product-details {
@@ -266,17 +329,8 @@ body {
 #cart-pr-dets {
   background-color: #343f5e;
   color: white;
-}
-#buy-pr-dets {
-  border: 1px solid #232c47;
-  background-color: #f8f9fa;
-  color: #000;
-  font-weight: 500;
-}
-#cart-pr-dets,
-#buy-pr-dets {
-  margin: 1%;
-  padding: 1%;
+  margin-top: 3rem;
+  padding: 0.5rem;
   text-decoration: none;
   text-align: center;
   border-radius: 2px;
@@ -608,7 +662,7 @@ body {
   border-radius: 5px;
 }
 .inv-search-btn:hover {
-  background-color: #333;
+  background-color: #46547d;
 }
 
 /* Table Rows */
@@ -655,6 +709,9 @@ body {
   padding: 8px 12px;
   border-radius: 5px;
   background-color: #343f5e;
+}
+#manage-btn:hover {
+  background-color: #46547d;
 }
 #delete-btn {
   background-color: transparent;
@@ -729,7 +786,7 @@ body {
 }
 
 .add-pr-form button:hover {
-  background-color: #333;
+  background-color: #46547d;
 }
 .add-pr-right-inner hr {
   position: absolute; /* Allows positioning relative to .add-pr-right */
@@ -862,11 +919,19 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+.manage-product-container button:hover {
+  background-color: #46547d;
+}
 #manage-delete {
   margin-top: 4.75rem;
   color: #000;
   background-color: white;
   border: 1px solid black;
+}
+#manage-delete:hover {
+  background-color: #232c47;
+  color: white;
+  transition: 0.25s;
 }
 /*---------------------------------------- Employee Dashboard Styles --------------------------------------------*/
 /*Note: borrowed table styling from the Product Dashboard section*/
@@ -881,6 +946,9 @@ body {
   color: #000;
   background-color: #f8f9fa;
   border: 1px solid #878589;
+}
+.emp-btn:hover {
+  background-color: #f1f2f4;
 }
 .emp-priv {
   display: flex;
@@ -897,6 +965,9 @@ body {
   flex: 0;
   background-color: #343f5e;
   color: white;
+}
+.emp-priv button:hover {
+  background-color: #46547d;
 }
 /*------------------------------------------ Employee Profile Styles -------------------------------------------*/
 .emp-prfl-cont {
@@ -958,6 +1029,11 @@ body {
   border: 1px solid #000;
   color: #000;
 }
+.term-btn:hover {
+  transition: 0.25s;
+  background-color: #232c47;
+  color: #fff;
+}
 
 /*------------------------------------------ Logged-In User Profile -------------------------------------------- */
 .user-prfl-cont {
@@ -996,4 +1072,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.user-prfl a:hover {
+  background-color: #46547d;
 }

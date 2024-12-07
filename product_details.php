@@ -55,11 +55,10 @@ if (isset($_COOKIE['view-product'])) {
             <h4><?php echo "$" . htmlspecialchars($price)?></h4><br>
             <p class="pr-descr"><?php echo htmlspecialchars($stock) . " left in stock"?></p>
             <p><?php echo htmlspecialchars($description)?></p>
-            <input type="number" id="quantity-input" min="0"><br></br>
+            <input type="number" id="quantity-input" min="0">
             <a href="#" id="cart-pr-dets" class="cart-data"
-            data-product-name="<?php echo htmlspecialchars($name) ?>"
-            >Add to Cart</a>
-            <button id="buy-pr-dets">Buy Now</button>
+            data-product-name="<?php echo htmlspecialchars($name) ?>">Add to Cart</a>
+           
 
         </div>
     </div>

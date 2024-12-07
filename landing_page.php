@@ -17,13 +17,31 @@
                 document.getElementById('navbar-area').innerHTML = data;
             })
     }
+
+    //Fade In Effect
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible'); // Add the 'visible' class when the image is in the viewport
+                    observer.unobserve(entry.target); // Stop observing once it's visible
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the image is visible
+        });
+
+        images.forEach(image => observer.observe(image));
+    });
 </script>
 
 
 <style>
-   body {
-    background-color: #0D0B1C;
-   }
+    body {
+        background-color: #0D0B1C;
+    }
 </style>
 
 <?php
@@ -38,53 +56,79 @@ $name1 = query($conn, 'name', 'Lunatech SonicWave Pro');
 $imgURL2 = query($conn, 'image_url', 'Lunatech GamePro 360');
 $name2 = query($conn, 'name', 'Lunatech GamePro 360');
 
-$imgURL3 = query($conn, 'image_url', 'Lunatech CrystalX Studio');
-$name3 = query($conn, 'name', 'Lunatech CrystalX Studio');
+$imgURL3 = query($conn, 'image_url', 'Lunatech EchoPulse Lite');
+$name3 = query($conn, 'name', 'Lunatech EchoPulse Lite');
+
+$imgURL4 = query($conn, 'image_url', 'Lunatech EchoFit Sport');
+$name4 = query($conn, 'name', 'Lunatech EchoFit Sport');
 
 ?>
 
 <body onload="loadNavbar()" class="landing">
     <div id="navbar-area"></div>
+
+    <!-- Landing Page -->
     <div>
         <video autoplay muted loop playsinline preload="auto" class="vid-bg">
             <source src="SiteAssets/wave.mp4" type="video/mp4">
 
         </video>
     </div>
-    <div class="landing-logo">
+    <div class="landing-logo fade-in">
         <img src="Logos/lunatech_white.png">
     </div>
-    <div class="feature-text">
-        <h2>Explore our latest deals</h2>
-    </div>
-    <div class="featured">
-        <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name1 ?>">
-            <a href="product_details.php">
-                <img src="<?php echo $imgURL1 ?>" class="ft-img" alt="...">
-                <div>
-                    <p class="ft-text"><?php echo $name1 ?></p>
-                </div>
-            </a>
+
+
+    <!-- Bestseller Cards-->
+    <div class="ft-deals">
+        <div class="feature-text">
+            <h2>Explore our bestsellers</h2>
         </div>
-        <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name2 ?>">
-            <a href="product_details.php">
-                <img src="SiteAssets/Products/blue_glow_headphones.png" class="ft-img" alt="...">
-                <div>
-                    <p class="ft-text"><?php echo $name2 ?></p>
-                </div>
-            </a>
-        </div>
-        <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name3 ?>">
-            <a href="product_details.php">
-                <img src="SiteAssets/Products/pink_headphones.png" class="ft-img" alt="...">
-                <div>
-                    <p class="ft-text"><?php echo $name3 ?></p>
-                </div>
-            </a>
+        <div class="featured">
+            <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name1 ?>">
+                <a href="product_details.php">
+                    <img src="<?php echo $imgURL1 ?>" class="ft-img" alt="...">
+                    <div>
+                        <p class="ft-text"><?php echo $name1 ?></p>
+                    </div>
+                </a>
+            </div>
+            <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name3 ?>">
+                <a href="product_details.php">
+                    <img src="<?php echo $imgURL3 ?>" class="ft-img" alt="...">
+                    <div>
+                        <p class="ft-text"><?php echo $name3 ?></p>
+                    </div>
+                </a>
+            </div>
+            <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name2 ?>">
+                <a href="product_details.php">
+                    <img src="<?php echo $imgURL2 ?>" class="ft-img" alt="...">
+                    <div>
+                        <p class="ft-text"><?php echo $name2 ?></p>
+                    </div>
+                </a>
+            </div>
+            <div class="product-card cookie-data" style="width: 18rem;" data-product-id="<?php echo $name4 ?>">
+                <a href="product_details.php">
+                    <img src="<?php echo $imgURL4 ?>" class="ft-img" alt="...">
+                    <div>
+                        <p class="ft-text"><?php echo $name4 ?></p>
+                    </div>
+                </a>
+            </div>
         </div>
 
+        <!-- Image Banner -->
+        <div class="img-banner-1">
+            <h1 id="img1-text1" class="fade-in">A New Way to Listen</h1>
+            <img src="SiteAssets/galaxy_earbud_banner.png" style="width: 100%">
+            <h3 id="img1-text2" class="fade-in">Explore our Catalog</h3>
+            <a id="img1-btn" class="fade-in" href="catalog.php">View Catalog</a>
+        </div>
     </div>
 </body>
+
 </html>
 
 <?php
