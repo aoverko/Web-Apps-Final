@@ -1,5 +1,5 @@
 ![lunatech](Logos/githublogo.png)
-Group Members: Nick Benson, Jack Fiacco, Sam Chapin, Ariana Overko
+Group Members: Ariana Overko, Nick Benson, Jack Fiacco, Sam Chapin
 
 
 ## About lunatech
@@ -27,7 +27,7 @@ DB Table Architecture:
 [see tables](db_tables.md)
 
 WireFrames:
-[see wireframes](page_designs.md)
+[see wireframes](wireframes.md)
 
 ### Color Scheme
 ![Color Scheme](SiteAssets/color_scheme.png)
@@ -48,3 +48,18 @@ WireFrames:
 12) View Employee Profile
 
 Disclaimer: this site is NOT YET scalable or size responsive
+
+![LandingPage1](PageDesigns/landing_page1.png)
+![LandingPage2](PageDesigns/landing_page2.png)
+![LandingPage3](PageDesigns/landing_page3.png)
+![Catalog](PageDesigns/catalog.png)
+![Cart](PageDesigns/cart.png)
+![Login](PageDesigns/login.png)
+![Signup](PageDesigns/signup.png)
+![Home](PageDesigns/home.png)
+![Product Dash](PageDesigns/inventory.png)
+![Modify Product](PageDesigns/modify.png)
+![Add Product](PageDesigns/add_new.png)
+![Employees](PageDesigns/employees.png)
+![Employee Profile](PageDesigns/employees.png)
+
