@@ -116,25 +116,16 @@
         document.querySelector('.cart-total').textContent = `Total: $ ${total.toFixed(2)}`;
     }
 
-    //Boostrap Script for the Buy Now Button
-    document.addEventListener('DOMContentLoaded', function() {
-        const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
-        const alertBtn = document.getElementById('liveAlertBtn');
+    //delete the cart cookie if "buy now" is clicked
+    document.addEventListener('DOMContentLoaded', () => {
+        const buyNowButton = document.querySelector('.buy-btn');
 
-        function showLiveAlert(message, type) {
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = `
-            <div class="alert alert-${type} alert-dismissible" role="alert">
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
-            alertPlaceholder.appendChild(wrapper);
+        if (buyNowButton) {
+            buyNowButton.addEventListener('click', function() {
+                // Delete the cart-items cookie
+                document.cookie = "cart-items=; path=/; max-age=0";
+            });
         }
-
-        alertBtn.addEventListener('click', function() {
-            showLiveAlert('Purchase successful! Thank you for your order.', 'success');
-        });
     });
 </script>
 
@@ -189,7 +180,8 @@ if (!empty($productNames)) {
             <?php if (isset($cartEmpty) && $cartEmpty): ?>
                 <!-- Display 'Cart is empty' message -->
                 <div class="empty-cart-message">
-                    <h3 style="margin-left: 1rem">Your cart is empty.</h3>
+                    <h1>Your cart is empty.</h1>
+                    <a class="empty-back-btn" href="catalog.php">Back to Catalog</a>
                 </div>
             <?php elseif ($result && $result->num_rows > 0): ?>
                 <!-- Cart Table Section -->
@@ -266,15 +258,13 @@ if (!empty($productNames)) {
                         <h5 class="cart-tax">Tax: $<?php echo number_format($totalTax, 2); ?></h5>
                         <h2 class="cart-total">Total: $<?php echo number_format($total, 2); ?></h2>
                     </div>
-                    <form action="cart.php" method="POST">
-                        <div id="liveAlertPlaceholder"></div>
-                        <button type="button" class="buy-btn" id="liveAlertBtn">Buy Now</button>
-                    </form>
+                    <a href="purchase_msg.php" class="buy-btn">Buy Now</a>
                 </div>
             <?php else: ?>
                 <!-- Fallback for unexpected conditions -->
                 <div class="empty-cart-message">
-                    <p>Your cart is empty.</p>
+                    <h1>Your cart is empty.</h1>
+                    <a class="empty-back-btn" href="catalog.php">Back to Catalog</a>
                 </div>
             <?php endif; ?>
         </div>

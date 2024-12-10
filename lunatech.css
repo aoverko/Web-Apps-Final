@@ -348,6 +348,31 @@ body {
   white-space: nowrap;
 }
 
+.empty-cart-message {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center !important;
+  margin-top: 6.5rem;
+}
+.empty-cart-message h1 {
+  font-size: 3rem;
+}
+.empty-back-btn {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 2px solid #000;
+  background-color: transparent;
+  color: #000;
+  margin-top: 1.5rem;
+}
+.empty-back-btn:hover {
+  background-color: #bcc3d794;
+}
 
 /* Cart Table Section */
 /*Note: borrowed table styling from the product dashboard*/
@@ -423,6 +448,8 @@ body {
   margin-top: 2.5rem;
   background-color: #343f5e;
   color: #fff;
+  text-decoration: none;
+  text-align: center;
   border: none;
   border-radius: 5px;
   padding: 0.5rem;
@@ -430,6 +457,28 @@ body {
 }
 .buy-btn:hover:hover {
   background-color: #46547d;
+}
+/*------------------------------------------------ Purchase Message ---------------------------------------------*/
+.purchase-msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+}
+.purchase-msg h1 {
+  margin-top: 2.5rem;
+  color: #fff;
+  font-weight: 400;
+}
+.purchase-msg h4 {
+  color: #fff;
+  font-weight: 400;
+}
+.rocket-gif{
+  z-index: -1;
+  max-width: 15%;
+  border-radius: 100%;
 }
 
 /*------------------------------------------------ Login Page Styles ---------------------------------------------*/
